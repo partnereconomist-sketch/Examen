@@ -3,757 +3,493 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Guía ELI5 — Conceptos Banca Central 2026</title>
+<title>Examen Diagnóstico — Banca Central 2026 (Nivel Doctorado)</title>
 <script>
-MathJax = { tex: { inlineMath: [['\\(','\\)']], displayMath: [['$$','$$'],['\\[','\\]']] }, svg:{fontCache:'global'} };
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)'],['$','$']], displayMath: [['$$','$$'],['\\[','\\]']] },
+  svg: { fontCache: 'global' }
+};
 </script>
-<script async src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.min.js"></script>
 <style>
 :root{
-  --bg:#0f1115; --panel:#171a21; --card:#1d212b; --ink:#e7eaf0; --muted:#9aa3b2;
-  --accent:#5aa9ff; --accent2:#7ee0c0; --warn:#ffb454; --line:#2a2f3a;
-  --eli:#243042; --rel:#1f2e2a; --ej:#2e2a1f;
+  --bg:#0f1419; --panel:#171d26; --panel2:#1d2530; --ink:#e6edf3; --muted:#9bb0c4;
+  --accent:#4cc2ff; --accent2:#a78bfa; --ok:#39d98a; --bad:#ff6b6b; --line:#2a3340;
+  --chip:#22303f; --chipink:#8fd3ff; --warn:#ffcc66;
 }
 *{box-sizing:border-box}
-body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;font-size:16px}
-a{color:var(--accent);text-decoration:none}
-.wrap{display:flex;max-width:1400px;margin:0 auto}
-nav{position:sticky;top:0;align-self:flex-start;height:100vh;overflow-y:auto;width:280px;padding:20px 16px;background:var(--panel);border-right:1px solid var(--line);font-size:14px}
-nav h2{font-size:13px;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);margin:18px 0 6px}
-nav a{display:block;padding:4px 8px;border-radius:6px;color:var(--ink);opacity:.85}
-nav a:hover{background:var(--card);opacity:1}
-main{flex:1;padding:32px 40px;max-width:980px}
-header.hero{background:linear-gradient(135deg,#1b2436,#171a21);border:1px solid var(--line);border-radius:16px;padding:28px 30px;margin-bottom:28px}
-header.hero h1{margin:0 0 6px;font-size:28px}
-header.hero p{margin:6px 0;color:var(--muted)}
-.legend{display:flex;gap:14px;flex-wrap:wrap;margin-top:14px;font-size:13px}
-.legend span{padding:4px 10px;border-radius:20px;border:1px solid var(--line)}
-.tag-eli{background:var(--eli)} .tag-rel{background:var(--rel)} .tag-ej{background:var(--ej)}
-section.tema{margin:40px 0;scroll-margin-top:20px}
-section.tema>h2{font-size:22px;border-bottom:2px solid var(--accent);padding-bottom:8px;color:#fff}
-.tema-sub{color:var(--muted);font-size:14px;margin-top:-6px}
-.concept{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:18px 20px;margin:18px 0;scroll-margin-top:20px}
-.concept h3{margin:0 0 10px;font-size:18px;color:var(--accent2)}
-.concept h3 .num{color:var(--muted);font-size:13px;font-weight:400}
-.block{border-radius:10px;padding:12px 14px;margin:10px 0}
-.block .lbl{font-size:12px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:4px}
-.eli{background:var(--eli)} .eli .lbl{color:#9fc6ff}
-.rel{background:var(--rel)} .rel .lbl{color:#7ee0c0}
-.ej{background:var(--ej)} .ej .lbl{color:#ffd27e}
-.qref{font-size:12px;color:var(--muted);background:#222732;border:1px solid var(--line);padding:2px 8px;border-radius:20px;margin-left:6px}
-.callout{background:#202a1f;border-left:4px solid var(--accent2);padding:12px 16px;border-radius:8px;margin:14px 0}
-.callout.warn{background:#2a2418;border-left-color:var(--warn)}
-table{border-collapse:collapse;width:100%;margin:12px 0;font-size:14px}
-th,td{border:1px solid var(--line);padding:8px 10px;text-align:left;vertical-align:top}
-th{background:#222732}
-code{background:#11141a;padding:1px 6px;border-radius:5px;font-size:14px}
-.pill{display:inline-block;font-size:11px;padding:2px 8px;border-radius:20px;background:#222732;border:1px solid var(--line);color:var(--muted);margin-right:4px}
-footer{margin:50px 0 20px;color:var(--muted);font-size:13px;border-top:1px solid var(--line);padding-top:16px}
-@media(max-width:900px){nav{display:none}main{padding:20px}}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;}
+.wrap{max-width:920px;margin:0 auto;padding:32px 20px 120px;}
+header.hero{border:1px solid var(--line);background:linear-gradient(180deg,#1a2230,#141a23);border-radius:16px;padding:28px 28px 22px;margin-bottom:24px;}
+header.hero h1{margin:0 0 6px;font-size:1.6rem;letter-spacing:.2px;}
+header.hero .sub{color:var(--muted);font-size:.96rem;}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+.pill{background:var(--panel2);border:1px solid var(--line);color:var(--muted);font-size:.8rem;padding:5px 11px;border-radius:999px;}
+.howto{background:#16202b;border-left:3px solid var(--accent);border-radius:8px;padding:14px 16px;margin-top:18px;font-size:.9rem;color:var(--muted);}
+.howto b{color:var(--ink);}
+.vaultbox{margin-top:14px;font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.vaultbox input{background:#0c1118;border:1px solid var(--line);color:var(--ink);border-radius:7px;padding:6px 9px;font-size:.82rem;min-width:230px;}
+.progress-wrap{position:sticky;top:0;z-index:20;background:rgba(15,20,25,.92);backdrop-filter:blur(6px);padding:10px 0;margin:-10px 0 14px;}
+.bar{height:8px;background:var(--panel2);border-radius:999px;overflow:hidden;border:1px solid var(--line);}
+.bar > span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s;}
+.barlabel{font-size:.78rem;color:var(--muted);margin-top:5px;}
+.tema{margin:30px 0 10px;font-size:1.05rem;color:var(--accent2);border-bottom:1px dashed var(--line);padding-bottom:6px;}
+.q{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:16px 0;}
+.q .top{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+.qnum{background:var(--accent);color:#06141f;font-weight:700;border-radius:8px;padding:2px 10px;font-size:.85rem;}
+.badge{font-size:.72rem;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted);}
+.badge.mc{color:#8fd3ff;border-color:#264a5e;}
+.badge.open{color:#d6c2ff;border-color:#3d3160;}
+.badge.tema{color:var(--muted);}
+.prompt{font-size:1rem;margin:6px 0 12px;}
+.concepts{margin:12px 0 4px;}
+.concepts .lbl{font-size:.74rem;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:6px;}
+.chip{display:inline-block;background:var(--chip);color:var(--chipink);border:1px solid #2b455a;border-radius:999px;padding:4px 11px;margin:3px 5px 3px 0;font-size:.82rem;text-decoration:none;cursor:pointer;transition:.15s;}
+.chip:hover{background:#2c4760;border-color:var(--accent);}
+.chip::before{content:"📓 ";font-size:.78rem;}
+.opts{margin:10px 0 4px;list-style:none;padding:0;}
+.opts li{margin:7px 0;}
+.opts label{display:flex;gap:10px;align-items:flex-start;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 13px;cursor:pointer;transition:.12s;}
+.opts label:hover{border-color:var(--accent);}
+.opts input{margin-top:4px;}
+.opts label.correct{border-color:var(--ok);background:#16291f;}
+.opts label.wrong{border-color:var(--bad);background:#2a1818;}
+.btnrow{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;}
+button{font-family:inherit;font-size:.86rem;border-radius:9px;padding:8px 15px;border:1px solid var(--line);background:var(--panel2);color:var(--ink);cursor:pointer;transition:.12s;}
+button:hover{border-color:var(--accent);}
+button.primary{background:var(--accent);color:#06141f;font-weight:700;border-color:var(--accent);}
+.feedback{margin-top:10px;font-size:.9rem;padding:10px 13px;border-radius:9px;display:none;}
+.feedback.show{display:block;}
+.feedback.ok{background:#16291f;color:var(--ok);border:1px solid #1f6e48;}
+.feedback.bad{background:#2a1818;color:#ff9a9a;border:1px solid #6e2424;}
+.sol{margin-top:12px;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+.sol summary{cursor:pointer;padding:11px 14px;background:var(--panel2);font-weight:600;color:var(--warn);font-size:.9rem;list-style:none;}
+.sol summary::-webkit-details-marker{display:none;}
+.sol summary::before{content:"▸ ";}
+.sol[open] summary::before{content:"▾ ";}
+.sol .body{padding:14px 16px;font-size:.93rem;color:#dbe6f0;border-top:1px solid var(--line);}
+.sol .body ul{margin:8px 0;padding-left:20px;}
+.checkself{display:flex;gap:8px;margin-top:10px;}
+.checkself button{flex:0 0 auto;}
+.scorecard{position:fixed;bottom:0;left:0;right:0;background:rgba(15,20,25,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:14px 20px;z-index:30;}
+.scorecard .inner{max-width:920px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.scorecard .num{font-size:1.05rem;font-weight:700;}
+.scorecard small{color:var(--muted);}
+footer{color:var(--muted);font-size:.82rem;margin-top:40px;text-align:center;border-top:1px solid var(--line);padding-top:18px;}
+code{background:#0c1118;padding:1px 5px;border-radius:5px;font-size:.86em;color:#9fe0ff;}
 </style>
 </head>
 <body>
 <div class="wrap">
-<nav>
-<h2>Navegación</h2>
-<a href="#fundamentos">★ Fundamentos básicos</a>
-<a href="#t1">T1 · Introducción</a>
-<a href="#t2">T2 · Oferta de dinero</a>
-<a href="#t3">T3 · Demanda de dinero</a>
-<a href="#t4">T4 · MIU (Sidrauski)</a>
-<a href="#t5">T5 · Expectativas racionales</a>
-<a href="#t6">T6 · Modelo de Lucas</a>
-<a href="#t7">T7 · Modelo de Taylor</a>
-<a href="#t8">T8 · Neokeynesiano (NK)</a>
-<a href="#t9">T9 · Discreción y óptima</a>
-<a href="#t10">T10 · Apéndice ER</a>
-<a href="#t11">T11–12 · Señoreaje y FTPL</a>
-<a href="#mapa">🗺️ Mapa de relaciones</a>
-</nav>
-<main>
+
 <header class="hero">
-<h1>Guía ELI5 — Conceptos de Banca Central 2026</h1>
-<p>Todos los conceptos que necesitas para responder el examen diagnóstico, explicados como si tuvieras 5 años (ELI5), conectados entre sí y con un ejemplo práctico de uso.</p>
-<p>Cubre las 26 preguntas (Mishkin 15/19 · Walsh 2,4–8 · Romer 6,7,11 · Notas PM BanRep). Empieza por los <b>Fundamentos básicos</b> y avanza tema a tema.</p>
-<div class="legend">
-<span class="tag-eli">🧒 ELI5 = explicación simple</span>
-<span class="tag-rel">🔗 Relación = cómo se conecta</span>
-<span class="tag-ej">💡 Ejemplo = uso real</span>
-</div>
+  <h1>🏦 Examen Diagnóstico — Curso de Banca Central 2026</h1>
+  <div class="sub">Nivel doctorado · 26 ejercicios · Basado en Mishkin (cap. 15, 19), Walsh (cap. 2, 4–8), Romer (cap. 6, 7, 11) y las <em>Notas de política monetaria</em> (BanRep, 2025).</div>
+  <div class="meta">
+    <span class="pill">⏱️ Sugerido: 3–4 h</span>
+    <span class="pill">12 temas</span>
+    <span class="pill">13 opción múltiple · 13 abiertas</span>
+    <span class="pill">Autocalificable</span>
+  </div>
+  <div class="howto">
+    <b>Cómo funciona.</b> Resuelve primero <em>sin mirar</em>. Cada pregunta lista los <b>conceptos que necesitas</b> dominar: si alguno no lo tienes claro, presiónalo y te llevará a la nota respectiva en <b>Obsidian</b>. Aprende, regresa y responde. Las preguntas de opción múltiple se autocalifican; las abiertas traen una <b>solución modelo</b> desplegable que tú comparas con tu respuesta.
+  </div>
+  <div class="vaultbox">
+    🔗 <span>Nombre de tu vault en Obsidian:</span>
+    <input id="vaultName" value="Curso Banca Central" />
+    <span style="opacity:.7">(ajústalo solo si tu vault tiene otro nombre)</span>
+  </div>
 </header>
 
-<!-- ===================== FUNDAMENTOS ===================== -->
-<section class="tema" id="fundamentos">
-<h2>★ Fundamentos básicos (lee esto primero)</h2>
-<p class="tema-sub">El vocabulario mínimo. Si dominas estas 12 ideas, todo lo demás encaja.</p>
-
-<div class="concept">
-<h3>¿Qué es el dinero y qué hace un banco central?</h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-El <b>dinero</b> es algo que todos aceptan para tres cosas: pagar (medio de cambio), poner precios (unidad de cuenta) y guardar valor para después (depósito de valor). El <b>banco central</b> (en Colombia, el Banco de la República) es "el banco de los bancos": no te presta a ti, sino que controla cuánto dinero hay y a qué tasa de interés se presta entre bancos. Su trabajo principal es cuidar que el dinero no pierda valor, es decir, mantener la <b>inflación</b> baja y estable.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-El banco central no fija "el dinero" directamente: mueve una <b>tasa de interés de intervención</b> y deja que eso se propague por los <b>canales de transmisión</b>. Todo el curso es entender ese puente entre "lo que hace el banco" y "la inflación y el producto".</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Si la inflación sube a 8% y la meta es 3%, el Banco de la República sube su tasa para enfriar el gasto y devolver la inflación a 3%.</div>
+<div class="progress-wrap">
+  <div class="bar"><span id="barFill"></span></div>
+  <div class="barlabel" id="barLabel">0 de 26 respondidas</div>
 </div>
 
-<div class="concept">
-<h3>Inflación, poder adquisitivo y estabilidad de precios</h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-<b>Inflación</b> (\(\pi\)) = qué tan rápido suben los precios en promedio. Si hay inflación, tu billete compra menos cada año: pierde <b>poder adquisitivo</b>. <b>Estabilidad de precios</b> no significa precios congelados, sino inflación baja y predecible (ej. 3%).</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Es el <b>objetivo de largo plazo</b> del banco central y el ancla del <b>esquema de inflación objetivo</b>. La <b>teoría cuantitativa</b> dice de dónde sale la inflación en el largo plazo (del crecimiento del dinero).</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Con inflación de 3% anual, lo que hoy cuesta $100 costará ~$134 en 10 años.</div>
-</div>
-
-<div class="concept">
-<h3>Tasa de interés nominal vs. real — Ecuación de Fisher</h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-La tasa <b>nominal</b> (\(i\)) es lo que dice el banco. La tasa <b>real</b> (\(r\)) es lo que de verdad ganas después de descontar la inflación. Si te pagan 10% pero los precios suben 7%, en poder de compra solo ganaste ~3%.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-La <b>ecuación de Fisher</b> \(i \approx r + \pi^e\) conecta lo nominal con lo real y las expectativas. Es la base del <b>principio de Taylor</b>, de la <b>regla de Friedman</b> y de casi todos los modelos del curso.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Banco sube \(i\) de 5% a 8% pero la gente espera +3% de inflación: la tasa real solo sube de verdad si \(i\) sube <i>más</i> que \(\pi^e\).</div>
-</div>
-
-<div class="concept">
-<h3>Producto, brecha y producto natural</h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-El <b>producto</b> (\(y\)) es todo lo que produce la economía (PIB). El <b>producto natural/potencial</b> (\(y^n\)) es lo que puede producir sin recalentarse, usando bien sus recursos. La <b>brecha</b> (\(y-y^n\)) mide si la economía está "acelerada" (brecha positiva, presiona inflación) o "fría" (brecha negativa, desempleo).</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-El banco intenta cerrar la brecha sin disparar la inflación. La <b>divine coincidence</b> y la <b>curva de Phillips</b> describen cuándo esos dos objetivos coinciden o chocan.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Tras un boom, la economía produce por encima de \(y^n\): hay sobrecalentamiento y la inflación sube.</div>
-</div>
-
-<div class="concept">
-<h3>Corto plazo vs. largo plazo · Neutralidad del dinero</h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-En el <b>largo plazo</b> los precios se ajustan a todo: imprimir más dinero solo sube precios, no hace al país más rico → el dinero es <b>neutral</b>. En el <b>corto plazo</b>, como hay precios "pegajosos" (no cambian al instante), el dinero sí puede mover el producto y el empleo.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Es el eje de TODO el curso: los modelos cambian solo en <i>por qué</i> los precios son rígidos en el corto plazo (Lucas: info imperfecta; Taylor/Calvo: contratos). En el largo plazo todos coinciden en neutralidad.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Un sorpresivo aumento de dinero hoy puede bajar el desempleo unos trimestres, pero en 5 años solo dejó precios más altos.</div>
-</div>
-
-<div class="concept">
-<h3>Expectativas: por qué importan tanto</h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-La gente y las empresas no solo miran el presente: <b>adivinan el futuro</b> y actúan hoy según eso. Si todos esperan inflación alta, suben precios y salarios ya mismo... y la inflación se vuelve realidad. Las expectativas se "autocumplen".</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Las <b>expectativas racionales</b> (T5) son el motor de Lucas, NK, Barro-Gordon y el <b>canal de expectativas</b>. La <b>credibilidad</b> del banco es justamente su poder de mover esas expectativas.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-El banco anuncia creíblemente que bajará la inflación a 3%: empresas moderan sus alzas de precios <i>antes</i> de que suba la tasa.</div>
-</div>
-</section>
-
-<!-- ===================== TEMA 1 ===================== -->
-<section class="tema" id="t1">
-<h2>Tema 1 — Introducción</h2>
-<p class="tema-sub">Notas de política monetaria, cap. 1 · Preguntas 1 y 2</p>
-
-<div class="concept">
-<h3>Esquema de inflación objetivo (inflation targeting) <span class="qref">P1, P2</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-El banco anuncia un número claro ("inflación = 3%") y promete usar su tasa de interés para acercarse a él. Es como un termostato: si la economía "tiene fiebre" de precios, sube la tasa; si está fría, la baja.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Funciona solo si tiene <b>credibilidad</b> e <b>independencia</b>. Ancla expectativas vía el <b>canal de expectativas</b>. Es la práctica real de lo que los modelos NK (T8) justifican teóricamente.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-El Banco de la República tiene meta de 3% (±1%). Publica comunicados explicando cada decisión de tasa para que el mercado entienda su "función de reacción".</div>
-</div>
-
-<div class="concept">
-<h3>Credibilidad de la política monetaria <span class="qref">P1, P2</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Es que la gente <b>te crea</b>. Si el banco dice "voy a bajar la inflación" y todos le creen, ajustan precios y salarios suavemente y la inflación baja casi sola, sin recesión dolorosa.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Es la condición <i>necesaria</i> del inflation targeting (P1, respuesta b). Reduce la <b>razón de sacrificio</b> (cuánto desempleo cuesta bajar 1 punto de inflación). Sin ella, el <b>canal de expectativas</b> puede volverse en contra. Se gana con <b>reputación</b> (T9).</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Banco creíble sube la tasa y el mercado piensa "qué responsable" → bajan expectativas. Banco no creíble sube la tasa y piensan "algo malo pasa" → suben primas de riesgo.</div>
-</div>
-
-<div class="concept">
-<h3>Independencia del banco central <span class="qref">P1</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Que los políticos no le ordenen al banco imprimir dinero para pagar sus gastos. Como un árbitro que no puede ser despedido por el equipo que pita.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Es lo que hace creíble el "no voy a inflar". Es la solución institucional al <b>sesgo inflacionario</b> y la <b>inconsistencia dinámica</b> (T9). La evidencia (Romer cap. 11): más independencia ↔ menos inflación.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-La Constitución colombiana le da al BanRep el mandato de la moneda; su Junta no responde a presiones de gasto del gobierno de turno.</div>
-</div>
-
-<div class="concept">
-<h3>Canales de transmisión de la política monetaria <span class="qref">P2</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Son las "tuberías" por las que un cambio en la tasa llega hasta los precios. Mover la tasa es abrir una llave; los canales llevan el agua hasta la economía real.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Son cuatro y operan juntos: tasa de interés/crédito, tasa de cambio, precio de activos y <b>expectativas</b>. El de expectativas puede <i>amplificar</i> o <i>anular</i> a los demás (P2).</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Sube la tasa → (1) crédito más caro frena consumo, (2) peso se aprecia y abarata importados, (3) caen bolsa/vivienda, (4) la gente espera menos inflación.</div>
-</div>
-
-<div class="concept">
-<h3>Canal de la tasa de interés y de crédito <span class="qref">P2</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-El canal "de toda la vida": sube la tasa → préstamos más caros → la gente y empresas gastan/invierten menos → baja la demanda → baja la inflación.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Es el canal "tradicional" del enunciado de P2. Depende de la <b>tasa real</b> (Fisher), no solo la nominal. Es la <b>curva IS</b> del modelo NK (T8).</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Tasa hipotecaria sube de 10% a 14% → menos familias compran casa → enfría el sector construcción.</div>
-</div>
-
-<div class="concept">
-<h3>Canal de las expectativas <span class="qref">P1, P2</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Lo que mueve la economía hoy no es solo la tasa de hoy, sino la <b>trayectoria de tasas e inflación que la gente espera</b>. Si el banco logra cambiar lo que esperas, ya cambió tu comportamiento.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-<b>Amplifica</b> al canal tradicional si hay credibilidad; lo <b>anula</b> si no la hay (un alza se lee como mala señal y sube primas). Es el <b>forward guidance</b>. Conecta con expectativas racionales (T5) y NKPC forward-looking (T8).</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo (forward guidance)</span>
-"Mantendremos la tasa baja hasta que la inflación converja a 3%". Eso mueve la tasa real <i>larga</i> esperada hoy, sin cambiar la tasa de hoy.</div>
-</div>
-</section>
-
-<!-- ===================== TEMA 2 ===================== -->
-<section class="tema" id="t2">
-<h2>Tema 2 — Oferta de dinero</h2>
-<p class="tema-sub">Mishkin cap. 15 · Notas PM cap. 2 · Preguntas 3 y 4</p>
-
-<div class="concept">
-<h3>Base monetaria (MB) y reservas <span class="qref">P3, P4</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-La <b>base monetaria</b> es el dinero que crea directamente el banco central: billetes en circulación (\(C\)) + <b>reservas</b> de los bancos (\(R\)). Las reservas son el dinero que los bancos guardan en el banco central (parte obligatoria = <b>encaje</b>, parte voluntaria = <b>exceso</b>).</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-\(MB=C+R\). Es la "materia prima": el sistema bancario la multiplica en dinero total \(M\) vía el <b>multiplicador</b>. El banco la controla con <b>OMA</b>.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-El banco compra bonos por $100 → inyecta $100 de reservas → la base monetaria sube $100.</div>
-</div>
-
-<div class="concept">
-<h3>Operaciones de mercado abierto (OMA) y operaciones repo <span class="qref">P3</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Es la herramienta diaria: el banco <b>compra</b> bonos (inyecta dinero/reservas) o los <b>vende</b> (retira dinero). Un <b>repo</b> es una compra temporal (presta dinero hoy contra un bono y lo deshace en días).</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Mueven \(MB\) y la <b>tasa interbancaria</b> hacia la meta del banco. En régimen de <b>piso</b> (reservas abundantes) cambian el balance pero <i>no</i> la tasa (P3).</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-El BanRep hace repos de expansión a 1 día para que la tasa interbancaria se quede pegada a su tasa de intervención.</div>
-</div>
-
-<div class="concept">
-<h3>Mercado de reservas, tasa interbancaria y los dos regímenes <span class="qref">P3</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Los bancos se prestan reservas entre sí de un día para otro; el precio de eso es la <b>tasa de fondos federales / interbancaria</b>. Hay dos "mundos": <b>reservas escasas</b> (corredor: la tasa baja en pendiente cuando hay más reservas) y <b>reservas abundantes</b> (piso: la demanda es horizontal en la tasa que se paga por reservas, \(i_{IOR}\)).</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-El <b>piso</b> es \(i_{IOR}\) (lo que el banco paga por reservas) y el <b>techo</b> es la <b>tasa de descuento</b>. En piso, el <b>QE</b> agranda el balance sin mover la tasa → clave de P3 (respuesta d).</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Post-2008 la Fed tenía reservas abundantes: comprar más bonos (QE) no bajó más la tasa, ya estaba pegada al \(i_{IOR}\).</div>
-</div>
-
-<div class="concept">
-<h3>Tasa de interés sobre las reservas (\(i_{IOR}\)) y tasa de descuento <span class="qref">P3</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-\(i_{IOR}\): lo que el banco <b>paga</b> a los bancos por dejar reservas ahí → ningún banco presta más barato que eso → es el <b>piso</b>. Tasa de descuento: lo que el banco <b>cobra</b> por prestarle a los bancos → ninguno paga más caro en el mercado → es el <b>techo</b>.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Forman el "corredor" donde vive la tasa interbancaria. Confundir piso con techo es el error del distractor (b) en P3.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Si \(i_{IOR}=10\%\), un banco nunca presta a otro al 9%: mejor deja la plata en el banco central ganando 10%.</div>
-</div>
-
-<div class="concept">
-<h3>Multiplicador monetario y creación múltiple de depósitos <span class="qref">P4</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Cuando depositas $100, el banco guarda una fracción y presta el resto; quien lo recibe lo deposita y se vuelve a prestar... así $1 del banco central se convierte en varios pesos de dinero en la economía. El <b>multiplicador</b> dice por cuánto se multiplica.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Derivación clave de P4: desde \(M=C+D\) y \(MB=C+R\), dividiendo por \(D\) con \(c=C/D\) y \(r=R/D\):
-$$m=\frac{M}{MB}=\frac{1+c}{c+r},\qquad r=r_{req}+r_{exc}$$
-Conecta base monetaria con dinero total.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Con \(c=0.1\) y \(r=0.1\): \(m=\frac{1.1}{0.2}=5.5\). Cada peso de base son $5.5 de dinero.</div>
-<div class="callout warn"><b>En una crisis de confianza:</b> la gente corre a sacar efectivo (↑\(c\)) y los bancos acumulan reservas de precaución (↑\(r_{exc}\)) → <b>\(m\) cae</b>. Aunque el banco suba \(MB\), el dinero \(M\) se estanca (1930–33, 2008).</div>
-</div>
-</section>
-
-<!-- ===================== TEMA 3 ===================== -->
-<section class="tema" id="t3">
-<h2>Tema 3 — Demanda de dinero</h2>
-<p class="tema-sub">Mishkin cap. 19 · Notas PM cap. 3 · Preguntas 5 y 6</p>
-
-<div class="concept">
-<h3>Motivos para demandar dinero <span class="qref">base</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-¿Por qué tener efectivo si no rinde intereses? Tres razones (Keynes): <b>transaccional</b> (para comprar el día a día), <b>precautelativo</b> (por si pasa algo), y <b>especulativo</b> (esperar para invertir cuando suban las tasas).</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-El motivo especulativo hace que la demanda de dinero <b>caiga cuando sube \(i\)</b> (preferencia por la liquidez). Eso es la <b>elasticidad-interés</b> que aparece en MIU, Cagan y el señoreaje.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Si los CDT pagan 12%, dejas menos plata "muerta" en la cuenta y la pones a rentar: bajas tu demanda de dinero.</div>
-</div>
-
-<div class="concept">
-<h3>Ecuación cuantitativa, velocidad y teoría cuantitativa <span class="qref">P5</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-\(MV=PY\): el dinero (\(M\)) multiplicado por las veces que rota al año (<b>velocidad</b> \(V\)) es igual al valor de todo lo vendido (precios \(P\) × cantidad \(Y\)). Si \(V\) e \(Y\) son estables, más dinero = más precios.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-En tasas de crecimiento: \(\hat M+\hat V=\pi+\hat Y\). Con \(\hat V\approx0\): \(\pi\approx\hat M-\hat Y\). Es la <b>neutralidad de largo plazo</b> (P5, respuesta c) y la base del enfoque <b>monetarista</b>.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Dinero crece 10%, economía real 3% → inflación ≈ 7% en el largo plazo.</div>
-</div>
-
-<div class="concept">
-<h3>Condición de paridad de tasas de interés (UIP) <span class="qref">P6</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Si invertir en pesos o en dólares debe rendir lo mismo (no hay almuerzo gratis), entonces la diferencia de tasas entre dos países predice cuánto se espera que se mueva la moneda.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-\(i = i^* + E[\dot s]\) (tasa local = tasa externa + depreciación esperada). Es la pieza central del <b>overshooting</b> (P6) y del canal de tasa de cambio.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Tasa Colombia 10%, EE.UU. 4% → el mercado espera que el peso se deprecie ~6% al año.</div>
-</div>
-
-<div class="concept">
-<h3>Sobrerreacción de la tasa de cambio — overshooting (Dornbusch) <span class="qref">P6</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Cuando el banco imprime dinero por sorpresa, la moneda se deprecia <b>más de lo que terminará valiendo</b> y luego regresa. Como un resorte que se estira de más antes de asentarse. La causa: los precios son lentos (rígidos), pero el tipo de cambio reacciona al instante.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Combina <b>precios rígidos</b> + <b>UIP</b>. Solución modelo de P6:</div>
-<table>
-<tr><th>Paso</th><th>Qué pasa</th></tr>
-<tr><td>1. Precios rígidos</td><td>↑\(M\) sube saldos reales \(M/P\) → <b>↓\(i\)</b></td></tr>
-<tr><td>2. UIP</td><td>Con \(i<i^*\) el mercado espera <b>apreciación futura</b></td></tr>
-<tr><td>3. Largo plazo</td><td>El tipo se deprecia (neutralidad)</td></tr>
-<tr><td>4. Hoy</td><td>Para que se espere apreciar <i>hacia</i> ese nivel, hoy debe <b>saltar por encima</b> (overshoot) y luego converger</td></tr>
-</table>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-La rigidez nominal genera <b>exceso de volatilidad</b> cambiaria: la moneda se sobrepasa y corrige, aunque el destino de largo plazo sea modesto.</div>
-</div>
-</section>
-
-<!-- ===================== TEMA 4 ===================== -->
-<section class="tema" id="t4">
-<h2>Tema 4 — Dinero en la función de utilidad (MIU · Sidrauski)</h2>
-<p class="tema-sub">Walsh cap. 2 · Notas PM cap. 4 · Preguntas 7 y 8</p>
-
-<div class="concept">
-<h3>MIU (Sidrauski): poner el dinero en la utilidad <span class="qref">P7, P8</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-En lugar de explicar <i>por qué</i> la gente quiere dinero, este modelo simplemente asume que tener saldos reales \(m=M/P\) <b>da satisfacción</b> (porque es cómodo, evita molestias). Es un atajo microfundamentado: el hogar elige consumo, ahorro y cuánto dinero tener para maximizar su felicidad.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Es el primer modelo <b>DSGE</b> con dinero del curso. Da dos grandes resultados: <b>superneutralidad</b> (P7) y la <b>regla de Friedman</b> (P8). Alternativas para meter dinero: <b>cash-in-advance</b> y <b>generaciones traslapadas</b>.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Modelar a un hogar que valora tener liquidez (poder pagar sin ir al banco) y por eso sacrifica un poco de rendimiento.</div>
-</div>
-
-<div class="concept">
-<h3>Neutralidad vs. superneutralidad <span class="qref">P7</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-<b>Neutralidad</b>: cambiar el <i>nivel</i> de dinero (una vez) no afecta variables reales. <b>Superneutralidad</b>: cambiar la <i>tasa de crecimiento</i> del dinero (\(\mu\), o sea la inflación) tampoco afecta el capital ni el consumo de largo plazo.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-En Sidrauski, el capital \(k^*\) depende <b>solo</b> de la preferencia temporal (regla de oro modificada), no de \(\mu\) → superneutralidad (P7, respuesta a). <b>Se rompe</b> con oferta de trabajo endógena o si la utilidad no es separable.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Subir la inflación de 2% a 6% deja igual el capital de largo plazo en Sidrauski básico; pero si la gente trabaja menos por la inflación, el capital sí cambia (no superneutralidad).</div>
-</div>
-
-<div class="concept">
-<h3>CPO, TMS consumo-dinero y demanda de dinero <span class="qref">P8</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-El hogar iguala el "placer extra" de un peso más en consumo con el de un peso más guardado como dinero. El costo de guardar dinero es el interés que dejas de ganar.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-La condición de primer orden da:
-$$\frac{U_m}{U_c}=\frac{i}{1+i}$$
-\(\frac{i}{1+i}\) es el <b>costo de oportunidad</b> de tener dinero. Más \(i\) → menos dinero demandado (elasticidad-interés).</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Si \(i=0\), guardar dinero no cuesta nada → el hogar se "sacia" de liquidez y \(U_m=0\).</div>
-</div>
-
-<div class="concept">
-<h3>Regla de Friedman (tasa óptima de inflación) y costo en bienestar <span class="qref">P8</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Producir dinero no le cuesta casi nada al banco. Entonces, para que la gente disfrute toda la liquidez que quiera sin "castigo", el interés de tener dinero debe ser <b>cero</b> (\(i=0\)). Como el dinero es "gratis de hacer", debe ser "gratis de tener".</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Eficiencia exige \(U_m=0\Rightarrow i=0\). Por Fisher \(i=r+\pi\), entonces \(i=0\Rightarrow \pi=-r\) (¡leve <b>deflación</b>!). Elimina el "triángulo" del <b>impuesto inflacionario</b> → minimiza el <b>costo en bienestar de la inflación</b>. Choca con la <b>tributación óptima</b> (T12).</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Si \(r=2\%\), la regla de Friedman pide \(\pi=-2\%\): precios cayendo lentamente para que tener efectivo no tenga costo de oportunidad.</div>
-</div>
-
-<div class="concept">
-<h3>Señoreaje / impuesto inflacionario <span class="qref">P8, P22</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Cuando el gobierno imprime dinero para gastar, le quita poder de compra a tu efectivo (la inflación). Es como un <b>impuesto invisible</b> sobre quien tiene dinero. Lo que el Estado "recauda" así se llama señoreaje.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-\(S=\mu\,m(i)\). La regla de Friedman dice que cobrar este impuesto es ineficiente. Pero tiene un límite: la <b>curva de Laffer del señoreaje</b> (T11). Aparece en Cagan e hiperinflaciones.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Un gobierno sin acceso a crédito imprime billetes para pagar nómina → genera inflación → la gente paga el "impuesto" perdiendo valor del efectivo.</div>
-</div>
-</section>
-
-<!-- ===================== TEMA 5 ===================== -->
-<section class="tema" id="t5">
-<h2>Tema 5 — Expectativas racionales (información perfecta)</h2>
-<p class="tema-sub">Romer cap. 6.1 · Notas PM cap. 5 · Preguntas 9 y 10</p>
-
-<div class="concept">
-<h3>Expectativas racionales (ER) <span class="qref">P9, P10</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-La gente no es tonta ni se equivoca siempre igual: usa <b>toda la información disponible</b> para adivinar el futuro y, en promedio, acierta. No comete errores sistemáticos.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Es el supuesto base de Lucas, NK y Barro-Gordon. Con ER + <b>vaciado de mercados</b>, lo <b>anticipado</b> ya está en los precios → la política previsible es neutral (P9, respuesta d). Solo las <b>sorpresas</b> tienen efectos reales.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Si todos saben que el banco subirá la tasa el viernes, los precios y contratos ya lo incorporaron el lunes: el viernes no pasa "nada nuevo".</div>
-</div>
-
-<div class="concept">
-<h3>Vaciado de mercados (market clearing) <span class="qref">P9</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Los precios y salarios se ajustan <b>al instante</b> para que oferta = demanda siempre. No hay sobrantes ni faltantes "pegados".</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Junto con ER da la <b>neutralidad total</b> del modelo de información perfecta. Los modelos de corto plazo (T6–T8) rompen <i>justamente</i> este supuesto (precios pegajosos).</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-En este mundo ideal nunca hay desempleo involuntario: si sobran trabajadores, el salario baja hasta emplearlos a todos.</div>
-</div>
-
-<div class="concept">
-<h3>Método de coeficientes indeterminados y ley de expectativas iteradas <span class="qref">P10, P21</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Es la "receta" para resolver modelos donde hoy depende de lo que esperas de mañana. <b>Adivinas</b> la forma de la solución (\(y_t=\phi x_t\)), la metes en la ecuación y despejas el coeficiente que la hace consistente. La <b>ley de expectativas iteradas</b> dice: "mi mejor pronóstico hoy de mi pronóstico de mañana = mi pronóstico de hoy".</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Para \(y_t=a\,E_t y_{t+1}+b\,x_t\) con \(x_t=\rho x_{t-1}+\varepsilon_t\):
-$$\phi=a\rho\phi+b \Rightarrow \phi=\frac{b}{1-a\rho},\quad y_t=\frac{b}{1-a\rho}x_t$$
-Equivale a \(y_t=b\sum_{j\ge0}a^j E_t x_{t+j}\). Se usa en MIU, Taylor, NK y Cagan.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Sirve para resolver la NKPC "hacia adelante": la inflación de hoy = suma descontada de los costos marginales futuros esperados.</div>
-</div>
-</section>
-
-<!-- ===================== TEMA 6 ===================== -->
-<section class="tema" id="t6">
-<h2>Tema 6 — Corto plazo I: Modelo de Lucas (islas)</h2>
-<p class="tema-sub">Romer cap. 6.9 · Walsh cap. 5.2.2 · Preguntas 11 y 12</p>
-
-<div class="concept">
-<h3>Problema de extracción de señal <span class="qref">P11, P12</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Cada productor vive en su "isla" y solo ve el precio de <b>su</b> producto. Cuando sube, no sabe si subió porque (a) su producto está de moda (choque <b>real</b>, debe producir más) o (b) hay inflación general (choque <b>nominal</b>, no debe hacer nada). Debe <b>adivinar</b> qué parte es real.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Esa adivinanza fija la <b>pendiente \(b\)</b> de la curva de oferta de Lucas \(y_i=b(p_i-E[p\mid p_i])\):
-$$b=\frac{\sigma^2_{rel}}{\sigma^2_{rel}+\sigma^2_{agg}}$$
-Es la base del <b>trade-off</b> producto-inflación y de la <b>crítica de Lucas</b>.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Si en tu país los precios agregados son muy volátiles, asumes que cualquier alza "es inflación" y no produces más → la oferta casi no responde.</div>
-</div>
-
-<div class="concept">
-<h3>Curva de oferta de Lucas y el peso de la señal <span class="qref">P11</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Solo produces más si crees que el precio de <b>tu</b> bien subió de verdad (más que el promedio). La fuerza con que respondes (\(b\)) depende de cuánta confianza tienes en que el alza es real.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-\(b\) <b>crece</b> cuando los choques relativos (\(\sigma^2_{rel}\)) pesan más que los agregados (\(\sigma^2_{agg}\)) → P11, respuesta b. Más "ruido nominal" → menos respuesta real.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-En una economía estable de precios, un alza en tu producto "se nota" como real → respondes fuerte. En una hiperinflación, ignoras las señales de precios.</div>
-</div>
-
-<div class="concept">
-<h3>Trade-off producto-inflación y evidencia internacional <span class="qref">P12</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-En países con inflación muy errática, la curva de Phillips es <b>casi vertical</b> (plana en el plano producto-inflación): la política monetaria casi no puede usar sorpresas para subir el producto, porque la gente atribuye todo a inflación.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Predicción contrastable de Lucas (1973): alta \(\sigma^2_{agg}\Rightarrow b\) pequeño \(\Rightarrow\) trade-off plano. Confirmada con datos de muchos países.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-En Suiza (inflación estable) una sorpresa monetaria movía el producto; en países latinoamericanos de alta inflación, casi solo movía precios.</div>
-</div>
-
-<div class="concept">
-<h3>Crítica de Lucas <span class="qref">P12</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-No puedes usar relaciones históricas para predecir qué pasará si <b>cambias la política</b>, porque la gente cambiará su comportamiento al cambiar las reglas. El mapa viejo deja de servir cuando reconstruyes la ciudad.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-El parámetro \(b\) <b>no es estructural</b>: depende del régimen de política. Por eso hay que modelar con parámetros profundos (preferencias, tecnología) → motiva los modelos DSGE microfundamentados (MIU, NK).</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Un banco que ve "más inflación = más empleo" en datos viejos e intenta explotarlo, descubre que al hacerlo sistemáticamente la relación desaparece (la gente lo anticipa).</div>
-</div>
-</section>
-
-<!-- ===================== TEMA 7 ===================== -->
-<section class="tema" id="t7">
-<h2>Tema 7 — Corto plazo II: Modelo de Taylor (ajuste escalonado)</h2>
-<p class="tema-sub">Romer cap. 7.3 · Walsh cap. 6/7.2 · Preguntas 13 y 14</p>
-
-<div class="concept">
-<h3>Rigidez nominal: por qué los precios son "pegajosos" <span class="qref">base</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-En la realidad las empresas <b>no cambian sus precios todos los días</b>: tienen menús impresos, contratos, costos de molestar clientes. Esa lentitud (<b>rigidez nominal</b>) es la razón por la que el dinero afecta el producto en el corto plazo.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Es lo que rompe el vaciado de mercados de T5. Lucas la genera con información imperfecta; Fischer/Taylor/Calvo, con <b>contratos</b>. Sin rigidez nominal no hay efectos reales del dinero.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Un restaurante reimprime la carta cada 6 meses; aunque suba la inflación hoy, sus precios siguen viejos un tiempo.</div>
-</div>
-
-<div class="concept">
-<h3>Fischer (predeterminados) vs. Taylor (escalonados) <span class="qref">P13</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-<b>Fischer</b>: los precios se fijan por adelantado pero pueden ser <b>distintos para cada fecha futura</b> usando la info de hoy (contrato contingente). <b>Taylor</b>: los precios se fijan por un período y los contratos están <b>escalonados</b> (unos firman hoy, otros el mes que viene), traslapándose.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-En <b>Fischer</b> la política <i>anticipada</i> se neutraliza dentro del contrato contingente. En <b>Taylor</b> el escalonamiento genera <b>inercia nominal persistente</b> aunque sea anticipada (P13, respuesta c).</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Si todos firman contratos a la vez (Fischer), se ajustan juntos. Si firman por turnos (Taylor), siempre hay "viejos" anclando el promedio → ajuste lento.</div>
-</div>
-
-<div class="concept">
-<h3>Contratos escalonados: persistencia más allá del contrato <span class="qref">P14</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Aunque cada contrato dure 1 año, el efecto de un choque dura <b>más</b> de un año. ¿Por qué? Quien fija precio hoy mira a los que ya están fijos (pasado) y a los que vendrán (futuro), y los promedia → cambia poquito → y eso se arrastra.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Solo una fracción reajusta cada período; el nuevo precio promedia pasado y futuro esperado → dependencia del rezago (<b>lag operators</b>) → ajuste gradual que <b>excede la duración individual</b>.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Un alza de costos hoy sigue empujando la inflación dos años, porque los contratos se renuevan por tandas.</div>
-</div>
-
-<div class="concept">
-<h3>Rigidez real (real rigidity) y complementariedad estratégica <span class="qref">P14</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Nadie quiere mover su precio si los demás no mueven el suyo (para no quedar caro o barato). Esta "timidez" hace que pequeñas razones para no cambiar precios (costos de menú) generen mucha rigidez agregada.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-La rigidez real <b>amplifica y prolonga</b> la rigidez nominal. Sin ella, los efectos del dinero serían pequeños y breves (Ball-Romer). Conecta con costos de menú y fallas de coordinación.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Una tienda no sube precios porque teme que la competencia no lo haga y perder clientes → el nivel de precios general se mueve aún más lento.</div>
-</div>
-</section>
-
-<!-- ===================== TEMA 8 ===================== -->
-<section class="tema" id="t8">
-<h2>Tema 8 — Corto plazo III: Modelo Neokeynesiano (NK)</h2>
-<p class="tema-sub">Romer cap. 6.1/7 · Walsh cap. 8 · Notas PM cap. 7 · Preguntas 15, 16 y 17</p>
-
-<div class="concept">
-<h3>El modelo NK canónico en 3 ecuaciones <span class="qref">base</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-El modelo "estándar" moderno tiene tres piezas: (1) <b>curva IS</b> dinámica = cómo la tasa real afecta el gasto; (2) <b>curva de Phillips NK (NKPC)</b> = cómo la brecha/costos afectan la inflación; (3) <b>regla de Taylor</b> = cómo el banco mueve la tasa. Junto con expectativas racionales, describe toda la economía.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Microfunda (hogares y firmas optimizando) lo que Lucas/Taylor intuían. La rigidez viene de <b>Calvo</b>. Es la base del inflation targeting moderno (T1) y de la política óptima (T9).</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Es el motor de los modelos que el BanRep y la Fed usan para proyectar inflación y decidir tasas.</div>
-</div>
-
-<div class="concept">
-<h3>Modelo de Calvo: precios "a la Calvo" <span class="qref">P15, P16</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Truco matemático: cada período, una empresa recibe "permiso para cambiar su precio" con probabilidad \(1-\theta\) (al azar, como una lotería). Las demás (fracción \(\theta\)) se quedan con el precio viejo. Así se modela la rigidez sin contar contratos uno por uno.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-La <b>probabilidad de ajuste</b> \(1-\theta\) determina qué tan plana es la NKPC. Quien ajusta fija un precio mirando todos los costos marginales futuros esperados.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Si \(\theta=0.75\), en promedio cada empresa cambia su precio cada 4 trimestres (1/(1−θ)).</div>
-</div>
-
-<div class="concept">
-<h3>Curva de Phillips Neokeynesiana (NKPC) y su derivación <span class="qref">P15, P16</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Dice que la inflación de hoy depende de dos cosas: la inflación que se <b>espera mañana</b> y qué tan altos están los <b>costos</b> de las empresas hoy. Es "mirando hacia adelante" (forward-looking).</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-$$\pi_t=\beta E_t\pi_{t+1}+\kappa\,\widetilde{mc}_t,\qquad \kappa=\frac{(1-\theta)(1-\beta\theta)}{\theta}$$
-Derivación: precio óptimo \(p_t^*=(1-\beta\theta)\sum(\beta\theta)^k E_t[mc^{nom}_{t+k}]\) + índice \(p_t=\theta p_{t-1}+(1-\theta)p_t^*\), log-linealizando. Mayor \(\theta\) (más rigidez) → NKPC <b>más plana</b>.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Iterando hacia adelante: \(\pi_t=\kappa\sum\beta^j E_t\widetilde{mc}_{t+j}\) → la inflación de hoy es la suma de costos marginales futuros esperados.</div>
-</div>
-
-<div class="concept">
-<h3>Costo marginal real <span class="qref">P15</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Lo que le cuesta a la empresa producir una unidad más, en términos reales. Cuando la economía está "caliente" (brecha positiva), los salarios y costos suben → costo marginal alto → presión inflacionaria.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Es el motor de la NKPC. Se relaciona con la brecha del producto. Por eso la NKPC se suele escribir \(\pi_t=\beta E_t\pi_{t+1}+\kappa\,\tilde y_t\) (brecha).</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Pleno empleo → trabajadores escasos → suben salarios → sube el costo marginal → empresas que ajustan suben precios.</div>
-</div>
-
-<div class="concept">
-<h3>Desinflación sin recesión: el "sacrificio nulo" del NK puro <span class="qref">P15</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Como la inflación de hoy depende de la <b>esperada</b>, si el banco convence creíblemente de que los costos futuros serán bajos, la inflación baja <b>hoy</b> sin necesidad de provocar desempleo.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-P15, respuesta a: con NKPC puramente forward-looking, una desinflación anunciada y creíble puede lograrse con costo de producto <b>nulo</b>. Si hubiera inercia (backward-looking), sí costaría recesión.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Es un resultado "demasiado bonito" del NK básico; en la práctica la inflación tiene inercia, por eso desinflar sí duele (razón de sacrificio > 0).</div>
-</div>
-
-<div class="concept">
-<h3>Principio de Taylor y unicidad del equilibrio <span class="qref">P17</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Cuando la inflación sube 1 punto, el banco debe subir la tasa nominal <b>más</b> de 1 punto (\(\phi_\pi>1\)). Solo así la tasa <b>real</b> sube, enfría la economía y ancla las expectativas. Si sube menos, la tasa real baja y todo se descontrola.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-En \(i_t=\phi_\pi\pi_t+\dots\), \(\phi_\pi>1\) garantiza equilibrio <b>único y estable</b> (P17, respuesta d). \(\phi_\pi\le1\) → indeterminación y "sunspots" (profecías autocumplidas). Usa la ecuación de Fisher.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Regla de Taylor típica: \(\phi_\pi=1.5\). Si la inflación sube 1%, la tasa sube 1.5% → la tasa real sube 0.5% → contiene la inflación.</div>
-</div>
-</section>
-
-<!-- ===================== TEMA 9 ===================== -->
-<section class="tema" id="t9">
-<h2>Tema 9 — Discreción, política óptima e inconsistencia dinámica</h2>
-<p class="tema-sub">Walsh cap. 6/7 · Romer cap. 11.7 · Notas PM cap. 8 · Preguntas 18, 19 y 20</p>
-
-<div class="concept">
-<h3>Inconsistencia dinámica (temporal) <span class="qref">P18, P19</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Lo que es óptimo prometer hoy deja de ser óptimo cumplir mañana. Como decir "mañana hago dieta": cuando llega mañana, prefieres el postre. El banco promete "inflación cero", pero cuando llega el momento le tienta inflar un poquito para bajar el desempleo.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Kydland-Prescott / Barro-Gordon. El óptimo <i>ex ante</i> (\(\pi=0\)) no es el óptimo <i>ex post</i>. Como la gente lo anticipa (ER), surge el <b>sesgo inflacionario</b>. Se resuelve con compromiso, reputación, Rogoff, Walsh.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Un profesor dice "habrá examen sorpresa" para que estudien; si los alumnos ya estudiaron, le tienta no ponerlo. Si lo anticipan, no estudian.</div>
-</div>
-
-<div class="concept">
-<h3>Sesgo inflacionario (Barro-Gordon) <span class="qref">P18, P19</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Si el banco quiere un producto <b>mayor</b> al natural (\(k>1\), porque el natural le parece "muy bajo"), siempre tiene la tentación de inflar. La gente lo sabe y espera inflación alta. Resultado: inflación alta <b>sin</b> ganancia de producto. Lo peor de ambos mundos.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Con \(L=\tfrac12(\pi^2+\lambda(y-ky^n)^2)\) y \(y=y^n+a(\pi-\pi^e)\), bajo discreción y ER (\(\pi=\pi^e,\ y=y^n\)):
-$$\pi^{disc}=\lambda a(k-1)y^n>0$$
-La pérdida es mayor que bajo <b>compromiso</b> (\(\pi=0\)). P18 respuesta b.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Países sin banco central creíble tienden a inflación crónica alta sin más crecimiento: el sesgo en acción.</div>
-</div>
-
-<div class="concept">
-<h3>Soluciones: Rogoff, contrato Walsh y reputación <span class="qref">P19</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Tres formas de "atarse las manos" para no ceder a la tentación de inflar.</div>
-<table>
-<tr><th>Solución</th><th>Idea ELI5</th><th>Efecto</th></tr>
-<tr><td><b>Rogoff</b> (banquero conservador)</td><td>Nombrar a alguien que odia la inflación más que la sociedad (\(\lambda_{CB}<\lambda\))</td><td>Reduce el sesgo, pero <b>empeora</b> la respuesta a choques (trade-off)</td></tr>
-<tr><td><b>Contrato Walsh</b></td><td>Castigar al banquero proporcional a la inflación (penalidad lineal \(t\pi\), con \(t=\lambda a(k-1)y^n\))</td><td><b>Elimina</b> el sesgo <b>sin</b> sacrificar respuesta a choques (primer mejor)</td></tr>
-<tr><td><b>Reputación</b></td><td>En juego repetido, la gente castiga con desconfianza si el banco "hace trampa"</td><td>Sostiene baja inflación si el futuro importa (poco descuento)</td></tr>
-</table>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Conecta con <b>independencia</b> (T1) como solución institucional y con <b>credibilidad</b>. El contrato Walsh es el "primer mejor".</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-La independencia legal del BanRep + su historial de cumplir la meta = mezcla de "Rogoff" institucional y reputación.</div>
-</div>
-
-<div class="concept">
-<h3>Reglas vs. discreción · Compromiso <span class="qref">P18, P20</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-<b>Discreción</b>: el banco decide libremente cada período (cae en el sesgo). <b>Reglas/compromiso</b>: se ata a una fórmula creíble y obtiene mejor resultado. Atarse las manos es <i>ventajoso</i>.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-El compromiso replica el óptimo \(\pi=0\) y mejora el bienestar frente a la discreción. Es la lógica detrás de la <b>regla de Taylor</b> y el inflation targeting.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Ulises se ata al mástil para no caer ante las sirenas: el banco se ata a una meta para no caer ante la tentación de inflar.</div>
-</div>
-
-<div class="concept">
-<h3>Divine coincidence <span class="qref">P20</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-"Coincidencia divina": en el NK básico, estabilizar la inflación es <b>lo mismo</b> que estabilizar el empleo. Los dos objetivos no chocan... hasta que llega un <b>choque de costos</b> (cost-push), que los enfrenta.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Sin cost-push: cerrar la brecha ⇒ \(\pi=0\). Un choque de oferta (ej. petróleo) <b>rompe</b> la coincidencia y crea el <b>trade-off</b> (P20, respuesta c). Ahí Rogoff y el contrato Walsh importan.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Sube el petróleo: bajar inflación exige enfriar la economía (más desempleo). Ya no se puede tener ambos a la vez.</div>
-</div>
-</section>
-
-<!-- ===================== TEMA 10 ===================== -->
-<section class="tema" id="t10">
-<h2>Tema 10 — Apéndice: solución con expectativas racionales</h2>
-<p class="tema-sub">Notas PM, apéndice · Pregunta 21</p>
-
-<div class="concept">
-<h3>Equivalencia de certidumbre (certainty equivalence) <span class="qref">P21</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-En modelos lineales con objetivos "cuadráticos", puedes resolver el problema <b>como si no hubiera incertidumbre</b> (usando solo los <i>promedios</i> esperados) y luego añadir las expectativas. La incertidumbre (varianza) <b>no cambia</b> la regla óptima.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Método: resolver la versión determinística (coeficientes indeterminados) y sustituir \(x_{t+j}\to E_t x_{t+j}\) (expectativas iteradas). Funciona porque la linealidad "deja pasar" el operador esperanza; los segundos momentos no entran en las CPO. <b>Falla</b> con no linealidades o motivo precautorio.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-El banco fija su tasa según la inflación <i>esperada</i>, sin importar cuán incierta sea esa proyección (en el mundo lineal-cuadrático).</div>
-</div>
-</section>
-
-<!-- ===================== TEMA 11-12 ===================== -->
-<section class="tema" id="t11">
-<h2>Tema 11–12 — Complementario: Señoreaje, FTPL y Cagan</h2>
-<p class="tema-sub">Romer cap. 11 · Walsh cap. 4 · Preguntas 22 a 26</p>
-
-<div class="concept">
-<h3>Curva de Laffer del señoreaje <span class="qref">P22</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Imprimir dinero recauda... hasta cierto punto. Si imprimes demasiado, la gente huye del efectivo (lo gasta rápido), y recaudas <b>menos</b> en términos reales. Como un impuesto tan alto que nadie quiere pagar la base gravada.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-\(S=\mu\,m(i)\) tiene forma de campana en \(\mu\). A la <b>derecha del máximo</b>: ↑\(\mu\Rightarrow\)↑\(\pi^e\Rightarrow\)↑\(i\Rightarrow\)↓\(m\) más que proporcional ⇒ <b>menor</b> recaudo real (P22, respuesta a). Diagnóstico clásico de hiperinflaciones.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Zimbabue/Venezuela: aceleraron la emisión y el señoreaje real <i>cayó</i> porque nadie quería tener la moneda.</div>
-</div>
-
-<div class="concept">
-<h3>Estructura temporal de tasas y teoría de las expectativas <span class="qref">P23</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-La tasa de un bono a largo plazo es, más o menos, el <b>promedio de las tasas cortas que el mercado espera</b> durante esa vida. Por eso la "pendiente" de la curva de rendimientos dice qué espera el mercado.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-\(i_t^{(n)}\approx\frac1n\sum_{k=0}^{n-1}E_t i_{t+k}^{(1)}+\text{prima}_n\). Pendiente positiva → se esperan tasas (e inflación) más altas; invertida → recortes (señal recesiva). La <b>prima por plazo</b> sesga la lectura pura y hay que descontarla.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Curva de rendimientos invertida en EE.UU. suele anticipar recesión: el mercado espera que la Fed recorte tasas.</div>
-</div>
-
-<div class="concept">
-<h3>Teoría fiscal del nivel de precios (FTPL) y régimen ricardiano <span class="qref">P24</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Normalmente pensamos que el dinero fija los precios. La FTPL dice que, en un régimen <b>no ricardiano</b>, son las <b>cuentas del gobierno</b> las que fijan el nivel de precios: si el Estado no promete pagar su deuda con superávits, los precios suben hasta licuar esa deuda.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-No ricardiano (P24, respuesta b): \(\frac{B_{t-1}}{P_t}=E_t\sum(\text{superávits reales descontados})\); \(P_t\) es la variable de ajuste. <b>Ricardiano</b>: la política fiscal respalda cualquier \(P\) y el dinero ancla precios. Conecta con la restricción presupuestaria del gobierno.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Si el mercado deja de creer que el gobierno ajustará sus cuentas, los precios saltan para reducir el valor real de la deuda existente.</div>
-</div>
-
-<div class="concept">
-<h3>Modelo de Cagan, hiperinflación racional y equilibrios múltiples <span class="qref">P25</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-En el modelo de Cagan, el precio de hoy depende de cuánto dinero se espera en el futuro. Si la gente <b>espera</b> que los precios exploten, dejan de querer dinero, y los precios <b>explotan</b> de verdad: una profecía autocumplida (burbuja), aunque el dinero no crezca.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-\(m_t-p_t=-\alpha(E_t p_{t+1}-p_t)\). Solución fundamental: \(p_t=\frac{1}{1+\alpha}\sum_{j\ge0}(\frac{\alpha}{1+\alpha})^j E_t m_{t+j}\). Solución general = fundamental + <b>burbuja</b> \(b_t\) explosiva → hiperinflación racional y <b>equilibrios múltiples</b> (sunspots). La transversalidad selecciona el fundamental.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Pánico inflacionario: el solo <i>miedo</i> a que la moneda colapse acelera su colapso, sin que haya cambiado la emisión.</div>
-</div>
-
-<div class="concept">
-<h3>Tributación óptima (Ramsey) y señoreaje <span class="qref">P26</span></h3>
-<div class="block eli"><span class="lbl">🧒 ELI5</span>
-Si todos los impuestos hacen daño (distorsionan), el gobierno debe repartir la carga para que el "dolor del último peso" sea igual en cada impuesto, incluido el impuesto inflacionario. No conviene exprimir una sola fuente.</div>
-<div class="block rel"><span class="lbl">🔗 Relación</span>
-Problema de Ramsey: igualar el <b>costo marginal de los fondos públicos</b> entre fuentes (Phelps → sugiere \(i>0\): gravar el dinero como otro bien). Pero si el dinero es un <b>insumo intermedio</b> o la utilidad es separable (Chari-Kehoe-Christiano), reaparece la <b>regla de Friedman</b> (\(i=0\)). Tensiona T4.</div>
-<div class="block ej"><span class="lbl">💡 Ejemplo</span>
-Un país que ya tiene IVA y renta altos puede usar algo de inflación moderada como impuesto adicional... salvo que valga más no distorsionar el "insumo dinero".</div>
-</div>
-</section>
-
-
-<!-- ===================== MAPA ===================== -->
-<section class="tema" id="mapa">
-<h2>🗺️ Mapa de relaciones (cómo encaja todo)</h2>
-<p class="tema-sub">El hilo conductor del curso en una sola lectura.</p>
-<div class="callout">
-<b>La gran historia:</b> El banco central quiere <b>estabilidad de precios</b> (T1). Para eso mueve una <b>tasa de interés</b> que llega a la economía por <b>canales de transmisión</b> (T1), entre ellos el de <b>expectativas</b>. Pero antes de operar la tasa, hay que entender de dónde sale el dinero (<b>oferta</b>, T2) y por qué la gente lo quiere (<b>demanda</b>, T3). En el <b>largo plazo</b> el dinero es <b>neutral</b> (teoría cuantitativa, MIU/Sidrauski T4): solo determina la inflación, y la regla de Friedman dice cuál sería la inflación óptima.
-</div>
-<div class="callout">
-<b>El corto plazo</b> (el corazón del curso) pregunta: ¿por qué el dinero <i>sí</i> mueve el producto a corto plazo? Todo depende de por qué los precios son <b>rígidos</b>:
-<table>
-<tr><th>Modelo</th><th>Fuente de la rigidez</th><th>Resultado</th></tr>
-<tr><td>Info perfecta (T5)</td><td>Ninguna (vaciado de mercados)</td><td>Neutralidad total: solo sorpresas importan</td></tr>
-<tr><td>Lucas (T6)</td><td>Información imperfecta (extracción de señal)</td><td>Trade-off depende de la volatilidad nominal; crítica de Lucas</td></tr>
-<tr><td>Fischer/Taylor (T7)</td><td>Contratos predeterminados/escalonados</td><td>Persistencia nominal; rigidez real amplifica</td></tr>
-<tr><td>NK/Calvo (T8)</td><td>Ajuste de precios aleatorio (Calvo)</td><td>NKPC forward-looking; principio de Taylor</td></tr>
-</table>
-</div>
-<div class="callout warn">
-<b>El cierre (T9):</b> ya teniendo el modelo (NK), &iquest;c&oacute;mo debe comportarse el banco? Si act&uacute;a con <b>discreci&oacute;n</b> cae en el <b>sesgo inflacionario</b> (inconsistencia din&aacute;mica). La cura: <b>compromiso, credibilidad, independencia, reputaci&oacute;n, Rogoff y contratos Walsh</b> &rarr; vuelve al punto de partida (T1: inflation targeting cre&iacute;ble). Los <b>ap&eacute;ndices</b> (T10) dan el m&eacute;todo de soluci&oacute;n y los <b>complementarios</b> (T11&ndash;12) muestran qu&eacute; pasa cuando lo fiscal domina (se&ntilde;oreaje, FTPL, Cagan).
-</div>
-<p><b>Tres ecuaciones que debes poder escribir de memoria:</b></p>
-<table>
-<tr><th>Nombre</th><th>Ecuaci&oacute;n</th><th>D&oacute;nde</th></tr>
-<tr><td>Multiplicador monetario</td><td>\(m=\dfrac{1+c}{c+r}\)</td><td>T2 &middot; P4</td></tr>
-<tr><td>NKPC</td><td>\(\pi_t=\beta E_t\pi_{t+1}+\kappa\,\widetilde{mc}_t\)</td><td>T8 &middot; P15-16</td></tr>
-<tr><td>Sesgo inflacionario</td><td>\(\pi^{disc}=\lambda a(k-1)y^n\)</td><td>T9 &middot; P19</td></tr>
-</table>
-</section>
+<div id="exam"></div>
 
 <footer>
-Gu&iacute;a de estudio ELI5 &middot; Banca Central 2026 &middot; Generada a partir del examen diagn&oacute;stico y la lista de conceptos del curso.
-Cubre las 26 preguntas (Temas 1&ndash;12). F&oacute;rmulas renderizadas con MathJax.
+  Examen diagnóstico generado a partir del vault <b>CBC 2026</b>. Los chips abren <code>obsidian://open</code>. <br>
+  Para que los enlaces funcionen, Obsidian debe estar instalado y el vault abierto al menos una vez.
 </footer>
-</main>
+
 </div>
+
+<div class="scorecard">
+  <div class="inner">
+    <div>
+      <div class="num"><span id="mcScore">0</span> / 13 <small>opción múltiple</small></div>
+      <small id="openCount">0 / 13 abiertas marcadas como repasadas</small>
+    </div>
+    <div class="btnrow" style="margin:0">
+      <button onclick="gradeAll()">Calificar opción múltiple</button>
+      <button class="primary" onclick="resetExam()">Reiniciar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const VAULT_DEFAULT = "Curso Banca Central";
+function obs(note){
+  const v = (document.getElementById('vaultName').value || VAULT_DEFAULT).trim();
+  return "obsidian://open?vault=" + encodeURIComponent(v) + "&file=" + encodeURIComponent(note);
+}
+function chips(list){
+  return '<div class="concepts"><div class="lbl">Conceptos que necesitas</div>' +
+    list.map(n=>`<a class="chip" data-note="${n.replace(/"/g,'&quot;')}">${n}</a>`).join('') + '</div>';
+}
+
+// ---- BANCO DE PREGUNTAS ----
+const QUESTIONS = [
+{tema:"Tema 1 — Introducción",type:"mc",
+ q:"En un esquema de inflación objetivo, el banco anuncia una meta cuantitativa y rinde cuentas sobre ella. ¿Cuál afirmación captura mejor por qué la <em>credibilidad</em> es condición necesaria —y no solo deseable— para la eficacia del esquema?",
+ c:["Esquema de inflación objetivo","Credibilidad de la política monetaria","Independencia del banco central","Canal de las expectativas"],
+ opts:[
+  "La credibilidad reduce la prima de riesgo soberano y abarata la deuda pública, lo que da espacio fiscal para que el banco no deba monetizar déficits.",
+  "Al anclar las expectativas de inflación en la meta, reduce el traspaso de choques a los precios y la razón de sacrificio de toda desinflación.",
+  "La transparencia sobre la función de reacción estabiliza el multiplicador monetario, volviendo predecible la velocidad del dinero en el corto plazo.",
+  "Bajo expectativas racionales, garantiza que tanto los choques anticipados como los no anticipados sean neutrales sobre el nivel de producto."],
+ a:1,
+ fb:"El anclaje de expectativas es el mecanismo: expectativas ancladas ⇒ menor traspaso de choques a inflación y menor razón de sacrificio."},
+
+{tema:"Tema 1 — Introducción",type:"open",
+ q:"Explica el <b>canal de expectativas</b> de transmisión y argumenta por qué puede amplificar o anular el canal tradicional de tasa de interés. Da un ejemplo de política de comunicación (forward guidance) que opere por este canal.",
+ c:["Canales de transmisión de la política monetaria","Canal de las expectativas","Canal de la tasa de interés y de crédito","Credibilidad de la política monetaria"],
+ sol:`<ul>
+ <li><b>Canal tradicional:</b> ↑ tasa de intervención ⇒ ↑ tasas reales de mercado ⇒ ↓ consumo/inversión ⇒ ↓ demanda agregada ⇒ ↓ inflación.</li>
+ <li><b>Canal de expectativas:</b> las decisiones de gasto y fijación de precios dependen de la <em>trayectoria esperada</em> de tasas e inflación, no solo de la tasa actual. Si los agentes creen que el banco mantendrá la meta, las expectativas se anclan.</li>
+ <li><b>Amplificación:</b> un anuncio creíble de endurecimiento futuro baja expectativas de inflación hoy, subiendo la tasa real esperada y reforzando el efecto contractivo aun antes de mover la tasa.</li>
+ <li><b>Anulación:</b> si el banco no es creíble (expectativas desancladas), un alza de tasa puede leerse como señal de que el banco "sabe algo malo", elevando primas y expectativas — contrarrestando el canal tradicional.</li>
+ <li><b>Ejemplo forward guidance:</b> "mantendremos la tasa baja hasta que la inflación converja a 3%" — compromete trayectoria futura y mueve la tasa real larga vía expectativas.</li></ul>`},
+
+{tema:"Tema 2 — Oferta de dinero",type:"mc",
+ q:"Considere el mercado de reservas en un régimen de <em>piso</em> (floor system) donde las reservas son abundantes y el banco central remunera las reservas a la tasa \\(i_{IOR}\\). Una compra de mercado abierto adicional, ¿qué efecto tiene sobre la tasa interbancaria de fondos federales \\(i_{ff}\\)?",
+ c:["Mercado de reservas","Operaciones de mercado abierto (OMA)","Tasa de interés sobre las reservas","Tasa de fondos federales (tasa interbancaria)"],
+ opts:[
+  "Cae de forma marcada: al desplazar la oferta a la derecha se recorre el tramo de pendiente negativa de la demanda de reservas.",
+  "Cae hasta situarse en la tasa de descuento, que opera como piso efectivo del corredor cuando las reservas son abundantes.",
+  "Sube levemente, porque el mayor volumen de reservas eleva el costo de oportunidad de prestar en el mercado interbancario.",
+  "Apenas varía: con reservas abundantes la demanda es horizontal en torno a \\(i_{IOR}\\), así que inyectar más reservas no mueve la tasa."],
+ a:3,
+ fb:"En el piso, la demanda de reservas es horizontal a \\(i_{IOR}\\) cuando hay exceso; por eso la Fed puede manejar el balance (QE) sin mover la tasa de política."},
+
+{tema:"Tema 2 — Oferta de dinero",type:"open",
+ q:"Deriva el <b>multiplicador monetario</b> \\(m\\) en el modelo con efectivo y exceso de reservas: parte de \\(M = C + D\\) y \\(MB = C + R\\), con razón efectivo–depósitos \\(c=C/D\\) y razón de reservas \\(r=R/D\\). Interpreta qué pasa con \\(m\\) en una crisis de confianza.",
+ c:["Multiplicador monetario","Base monetaria","Creación múltiple de depósitos"],
+ sol:`<ul>
+ <li>\\(M = C + D = (c+1)D\\), \\(MB = C + R = (c+r)D\\).</li>
+ <li>Dividiendo: \\(\\displaystyle m=\\frac{M}{MB}=\\frac{1+c}{c+r}\\), con \\(r=r_{req}+r_{exc}\\).</li>
+ <li>Como típicamente \\(c+r<1\\), se tiene \\(m>1\\): la base se "multiplica" vía creación de depósitos.</li>
+ <li><b>Crisis de confianza:</b> el público huye a efectivo (↑\\(c\\)) y los bancos acumulan reservas de precaución (↑\\(r_{exc}\\)). Ambos elevan el denominador ⇒ <b>\\(m\\) cae</b>. Aunque \\(MB\\) suba, \\(M\\) puede estancarse o caer (lección de 1930–33 y de 2008).</li></ul>`},
+
+{tema:"Tema 3 — Demanda de dinero",type:"mc",
+ q:"La ecuación cuantitativa \\(MV=PY\\). Bajo el supuesto monetarista clásico de \\(V\\) estable y \\(Y\\) en pleno empleo, ¿qué predice sobre la relación de largo plazo entre crecimiento del dinero e inflación, y qué propiedad del dinero está implícita?",
+ c:["Ecuación cuantitativa del dinero","Velocidad del dinero","Teoría cuantitativa del dinero","Neutralidad del dinero"],
+ opts:[
+  "La inflación iguala el crecimiento monetario solo cuando la velocidad crece al mismo ritmo que el producto real de la economía.",
+  "El crecimiento monetario afecta el producto real de forma duradera, pues la velocidad absorbe buena parte del ajuste nominal.",
+  "La inflación tiende a igualar el crecimiento del dinero menos el del producto, lo que refleja la neutralidad de largo plazo.",
+  "No puede establecerse una relación estable, porque la velocidad del dinero resulta marcadamente procíclica a lo largo del ciclo."],
+ a:2,
+ fb:"En tasas: \\(\\hat M+\\hat V=\\pi+\\hat Y\\); con \\(\\hat V\\approx0\\) ⇒ \\(\\pi\\approx\\hat M-\\hat Y\\). El dinero solo mueve nominales: neutralidad."},
+
+{tema:"Tema 3 — Demanda de dinero",type:"open",
+ q:"Explica el <b>overshooting</b> de Dornbusch del tipo de cambio ante una expansión monetaria sorpresiva, usando la paridad descubierta de tasas (UIP) y precios rígidos en el corto plazo. ¿Por qué el tipo de cambio se deprecia <em>más</em> que su nivel de largo plazo?",
+ c:["Sobrerreacción de la tasa de cambio (overshooting)","Condición de paridad de tasas de interés","Velocidad del dinero"],
+ sol:`<ul>
+ <li>Precios rígidos a corto ⇒ ↑\\(M\\) eleva \\(M/P\\) real ⇒ <b>baja la tasa de interés interna</b> \\(i\\).</li>
+ <li>UIP: \\(i = i^{*} + E[\\dot s]\\). Con \\(i<i^{*}\\), debe esperarse <b>apreciación futura</b> (\\(E[\\dot s]<0\\)).</li>
+ <li>Pero a largo plazo el tipo nominal se deprecia (neutralidad: \\(s\\) sube con \\(M\\)). Para que <em>desde hoy</em> se espere apreciación hacia ese nivel mayor, el tipo debe <b>saltar por encima</b> del nuevo nivel de largo plazo: <b>overshooting</b>.</li>
+ <li>Luego converge gradualmente apreciándose a medida que los precios se ajustan. La rigidez nominal es la causa del exceso de volatilidad cambiaria.</li></ul>`},
+
+{tema:"Tema 4 — Dinero en la función de utilidad (MIU)",type:"mc",
+ q:"En el modelo de Sidrauski con dinero en la función de utilidad, ¿qué resultado de <em>superneutralidad</em> se obtiene en estado estacionario y bajo qué supuesto clave puede romperse?",
+ c:["Dinero en la función de utilidad (MIU - Sidrauski)","Superneutralidad del dinero","No superneutralidad"],
+ opts:[
+  "El capital y el consumo de estado estacionario no dependen de la tasa de crecimiento del dinero; el resultado se rompe con oferta de trabajo endógena.",
+  "Los saldos reales son independientes de la inflación, aunque el capital de estado estacionario sí depende de la tasa de crecimiento del dinero a largo plazo.",
+  "La inflación no afecta el bienestar, porque la regla de Friedman fija la tasa nominal en cero bajo cualquier calibración del modelo.",
+  "El dinero es neutral pero no superneutral, ya que la inflación termina alterando de forma permanente el stock de capital de largo plazo."],
+ a:0,
+ fb:"Sidrauski: \\(k^{*}\\) depende solo de la tasa de preferencia temporal (regla de oro modificada), no de \\(\\mu\\). Con trabajo endógeno o separabilidad rota, deja de cumplirse."},
+
+{tema:"Tema 4 — Dinero en la función de utilidad (MIU)",type:"open",
+ q:"Partiendo de las condiciones de primer orden del hogar en el MIU, deriva la <b>demanda de dinero</b> \\(\\;\\frac{U_m}{U_c}=\\frac{i}{1+i}\\;\\) y muestra que la <b>regla de Friedman</b> (\\(i=0\\)) es óptima. Conecta con el costo en bienestar de la inflación.",
+ c:["Condiciones de primer orden","Tasa marginal de sustitución consumo-dinero","Demanda de dinero (en el MIU)","Regla de Friedman (tasa óptima de inflación)","Costo en bienestar de la inflación"],
+ sol:`<ul>
+ <li>El hogar maximiza \\(\\sum \\beta^t U(c_t,m_t)\\) sujeto a su restricción. Las CPO en \\(c\\), \\(m\\) y bonos dan la condición de no arbitraje entre tener dinero y bonos.</li>
+ <li>El costo de oportunidad de un peso real de saldos es \\(\\frac{i}{1+i}\\) (interés nominal sacrificado). En el óptimo: \\(\\displaystyle \\frac{U_m}{U_c}=\\frac{i}{1+i}\\).</li>
+ <li><b>Óptimo social:</b> producir dinero es casi sin costo (costo marginal ≈ 0). Eficiencia exige \\(U_m=0\\) en el margen ⇒ \\(\\frac{i}{1+i}=0\\Rightarrow i=0\\) — <b>regla de Friedman</b>.</li>
+ <li>Vía Fisher \\(i=r+\\pi\\), \\(i=0\\Rightarrow \\pi=-r\\): deflación a la tasa real. Saciar de liquidez elimina el "triángulo de Harberger" del impuesto inflacionario ⇒ minimiza el costo en bienestar.</li></ul>`},
+
+{tema:"Tema 5 — Expectativas racionales (info perfecta)",type:"mc",
+ q:"Bajo expectativas racionales con competencia e información perfectas (Romer 6.1), un cambio monetario <em>anticipado</em>:",
+ c:["Expectativas racionales","Vaciado de mercados (market clearing)","Solución de modelos con expectativas racionales"],
+ opts:[
+  "Eleva transitoriamente el producto por encima del natural mientras los precios relativos terminan de ajustarse a la nueva información.",
+  "Genera desempleo de corto plazo, pues los salarios nominales tardan en incorporar la política previamente anunciada por el banco.",
+  "Su efecto sobre el producto es indeterminado salvo que se especifique la elasticidad-interés de la demanda de dinero del modelo.",
+  "Afecta únicamente a las variables nominales y deja el producto en su nivel natural, porque precios y salarios se ajustan de inmediato."],
+ a:3,
+ fb:"Con vaciado de mercados y ER, lo anticipado ya está incorporado en precios: neutralidad. Solo lo no anticipado podría tener efectos reales (preludio a Lucas)."},
+
+{tema:"Tema 5 — Expectativas racionales (info perfecta)",type:"open",
+ q:"Resuelve por <b>coeficientes indeterminados</b> el modelo lineal \\(\\;y_t = a\\,E_t y_{t+1} + b\\,x_t,\\;\\) con \\(x_t\\) AR(1) \\(x_t=\\rho x_{t-1}+\\varepsilon_t\\) y \\(|a\\rho|<1\\). Encuentra la solución fundamental y explica el papel de la ley de expectativas iteradas.",
+ c:["Método de coeficientes indeterminados","Esperanza condicional","Ley de expectativas iteradas","Solución de modelos con expectativas racionales"],
+ sol:`<ul>
+ <li><b>Conjetura:</b> \\(y_t=\\phi x_t\\). Entonces \\(E_t y_{t+1}=\\phi E_t x_{t+1}=\\phi\\rho x_t\\).</li>
+ <li>Sustituyendo: \\(\\phi x_t = a\\phi\\rho x_t + b x_t\\) para todo \\(x_t\\) ⇒ \\(\\phi = a\\rho\\phi + b\\).</li>
+ <li><b>Solución:</b> \\(\\displaystyle \\phi=\\frac{b}{1-a\\rho}\\), de modo que \\(y_t=\\dfrac{b}{1-a\\rho}x_t\\).</li>
+ <li><b>Equivalencia forward:</b> iterando hacia adelante \\(y_t=b\\sum_{j\\ge0} a^j E_t x_{t+j}\\); con \\(E_t x_{t+j}=\\rho^j x_t\\) (ley de expectativas iteradas) se recupera la misma \\(\\phi\\). Se descarta la burbuja si \\(|a|<1\\) (solución fundamental, no explosiva).</li></ul>`},
+
+{tema:"Tema 6 — Corto plazo I (Modelo de Lucas)",type:"mc",
+ q:"En el modelo de islas de Lucas, cada productor observa el precio de su isla pero no el nivel general. ¿Qué determina la <em>pendiente</em> de la curva de oferta de Lucas \\(y_i=b(p_i-E[p\\,|\\,p_i])\\)?",
+ c:["Problema de extracción de señal","Curva de oferta de Lucas","Información imperfecta"],
+ opts:[
+  "Crece con la elasticidad-interés de la demanda de dinero, que regula cuánto se traslada un choque nominal a los precios de cada isla.",
+  "Crece cuando la varianza de los choques relativos es alta frente a la de los choques nominales agregados, por el peso de la señal.",
+  "Depende de la persistencia del choque monetario: cuanto más persistente, mayor la respuesta del producto a las sorpresas de precios.",
+  "Aumenta con el nivel medio de inflación, ya que precios más altos amplifican la respuesta de la oferta ante cada señal local."],
+ a:1,
+ fb:"Es un problema de extracción de señal: \\(b=\\sigma^2_{relativo}/(\\sigma^2_{relativo}+\\sigma^2_{agregado})\\) (en proporción). Más ruido nominal ⇒ se atribuye menos a lo real ⇒ oferta menos sensible."},
+
+{tema:"Tema 6 — Corto plazo I (Modelo de Lucas)",type:"open",
+ q:"Usando el problema de extracción de señal de Lucas, explica la predicción empírica contrastable: en países con alta varianza de la demanda nominal (alta inflación promedio), el <b>trade-off</b> producto–inflación es más plano. ¿Por qué? ¿Cómo se conecta con la crítica de Lucas?",
+ c:["Problema de extracción de señal","Variabilidad de la demanda y tasa de inflación promedio (evidencia internacional)","Curva de oferta de Lucas","Crítica de Lucas"],
+ sol:`<ul>
+ <li>El productor resuelve cuánto de \\(\\Delta p_i\\) es relativo (responder con producto) vs. agregado (no responder). El coeficiente de respuesta es \\(b=\\frac{\\sigma^2_{rel}}{\\sigma^2_{rel}+\\sigma^2_{agg}}\\).</li>
+ <li><b>Alta varianza nominal</b> (\\(\\sigma^2_{agg}\\) grande): racionalmente se atribuye la mayoría de los movimientos de precio a inflación general ⇒ <b>\\(b\\) pequeño</b> ⇒ la oferta responde poco a sorpresas de precios ⇒ <b>curva de Phillips/oferta más vertical (trade-off plano)</b>.</li>
+ <li><b>Evidencia (Lucas 1973):</b> en muestra de países, mayor volatilidad de demanda nominal ⇒ menor efecto real de las sorpresas monetarias. Confirmado cualitativamente.</li>
+ <li><b>Crítica de Lucas:</b> el parámetro \\(b\\) <em>no es estructural</em>: depende del régimen de política (de \\(\\sigma^2_{agg}\\)). Si el banco cambia su política, \\(b\\) cambia ⇒ no se pueden usar relaciones econométricas reducidas para evaluar política.</li></ul>`},
+
+{tema:"Tema 7 — Corto plazo II (Modelo de Taylor)",type:"mc",
+ q:"¿Cuál es la diferencia esencial entre el modelo de Fischer (precios/salarios predeterminados) y el de Taylor (contratos escalonados) respecto a la efectividad de la política monetaria?",
+ c:["Modelo de Fischer (precios predeterminados)","Modelo de Taylor (ajuste escalonado - staggered)","Contratos escalonados (staggered contracts)"],
+ opts:[
+  "En ambos casos solo la política no anticipada tiene efectos reales, ya que los contratos predeterminados neutralizan todo movimiento previsible del banco central.",
+  "En Fischer los precios son flexibles dentro del contrato, mientras que Taylor supone precios completamente fijos y carentes de contingencia a la información.",
+  "En Fischer la parte anticipada se neutraliza dentro del contrato contingente, pero el escalonamiento de Taylor sí genera rigidez agregada persistente.",
+  "En ambos la rigidez es real más que nominal, de modo que la política anticipada afecta el producto a través de la tasa de interés real de la economía."],
+ a:2,
+ fb:"Fischer: contratos multiperiodo pero contingentes a info ⇒ la parte anticipada se neutraliza dentro del contrato. Taylor: superposición de contratos ⇒ inercia nominal agregada."},
+
+{tema:"Tema 7 — Corto plazo II (Modelo de Taylor)",type:"open",
+ q:"Explica cómo los <b>contratos escalonados</b> de Taylor generan <em>persistencia</em> de la inflación y del producto que excede la duración de un contrato individual. ¿Qué papel juega la <b>rigidez real</b> para amplificar la rigidez nominal?",
+ c:["Contratos escalonados (staggered contracts)","Modelo de Taylor (ajuste escalonado - staggered)","Rigidez real (real rigidity)","Operadores de rezago (lag operators)"],
+ sol:`<ul>
+ <li><b>Escalonamiento:</b> solo una fracción de firmas reajusta cada periodo. Quien fija precio mira a los que ya fijaron (rezagados) y a los que fijarán (adelantados) ⇒ el salario/precio nuevo es promedio de pasado y futuro esperado.</li>
+ <li>Esto introduce <b>dependencia del rezago</b>: el nivel agregado de precios se ajusta gradualmente aun cuando cada contrato dure 2 periodos ⇒ la respuesta se "estira" más allá de la duración individual (raíz del polinomio de rezagos &lt; 1 pero positiva).</li>
+ <li><b>Rigidez real</b> (p. ej. demanda elástica, complementariedad estratégica): cada firma quiere su precio cerca del de las demás. Como muchas aún no ajustaron, la que reajusta <em>modera</em> su cambio ⇒ amplifica y prolonga el efecto de la rigidez nominal.</li>
+ <li>Sin rigidez real, las firmas reajustarían agresivamente y la rigidez nominal tendría efectos pequeños y breves (problema de Ball-Romer).</li></ul>`},
+
+{tema:"Tema 8 — Corto plazo III (Modelo Neokeynesiano)",type:"mc",
+ q:"La Curva de Phillips Neokeynesiana (NKPC) \\(\\pi_t=\\beta E_t\\pi_{t+1}+\\kappa\\, \\widetilde{mc}_t\\). ¿Qué implica su carácter <em>puramente forward-looking</em> para una desinflación creíble?",
+ c:["Curva de Phillips neokeynesiana (NKPC)","Costo marginal real","Modelo de Calvo (precios a la Calvo)"],
+ opts:[
+  "Una desinflación anunciada y creíble puede, en principio, lograrse con costo de producto nulo, porque la inflación de hoy depende de la esperada.",
+  "La desinflación exige una recesión proporcional al grado de rigidez de Calvo, ya que el costo marginal real debe caer de forma persistente.",
+  "La inflación queda determinada por su propio rezago, de modo que la política solo afecta los precios con un retraso de varios periodos.",
+  "El banco controla la inflación únicamente moviendo el costo marginal corriente, sin que las expectativas futuras jueguen un papel relevante."],
+ a:0,
+ fb:"Sin término backward-looking, \\(\\pi_t=\\kappa\\sum\\beta^j E_t \\widetilde{mc}_{t+j}\\). Si se anuncia menor mc futuro creíblemente, \\(\\pi\\) baja hoy sin recesión — el 'puzzle' de costo de sacrificio nulo del NK básico."},
+
+{tema:"Tema 8 — Corto plazo III (Modelo Neokeynesiano)",type:"open",
+ q:"Deriva la <b>NKPC</b> a partir del problema de fijación de precios de Calvo: fracción \\(1-\\theta\\) reajusta cada periodo, las demás mantienen su precio. Muestra el origen de \\(\\kappa=\\frac{(1-\\theta)(1-\\beta\\theta)}{\\theta}\\) (× elasticidad del mc).",
+ c:["Derivación de la NKPC","Modelo de Calvo (precios a la Calvo)","Probabilidad de ajuste de precios","Curva de Phillips neokeynesiana (NKPC)"],
+ sol:`<ul>
+ <li><b>Calvo:</b> cada firma reajusta con probabilidad \\(1-\\theta\\) por periodo, independiente de la historia. El reajuste óptimo \\(p_t^{*}\\) maximiza beneficios esperados descontados mientras el precio rija: \\(p_t^{*}=(1-\\beta\\theta)\\sum_{k\\ge0}(\\beta\\theta)^k E_t[\\,mc_{t+k}^{nom}\\,]\\) (precio = markup sobre costo marginal nominal esperado, ponderado).</li>
+ <li><b>Índice de precios:</b> \\(p_t=\\theta p_{t-1}+(1-\\theta)p_t^{*}\\) (los que no ajustan conservan \\(p_{t-1}\\)).</li>
+ <li>Combinando ambas y log-linealizando alrededor de inflación cero se obtiene \\(\\pi_t=\\beta E_t\\pi_{t+1}+\\kappa\\,\\widetilde{mc}_t\\).</li>
+ <li><b>Pendiente:</b> \\(\\displaystyle \\kappa=\\frac{(1-\\theta)(1-\\beta\\theta)}{\\theta}\\). Intuición: mayor \\(\\theta\\) (precios más rígidos, reajuste menos frecuente) ⇒ \\(\\kappa\\) menor ⇒ NKPC más plana, inflación menos sensible al costo marginal.</li></ul>`},
+
+{tema:"Tema 8 — Corto plazo III (Modelo Neokeynesiano)",type:"mc",
+ q:"Principio de Taylor y determinación del equilibrio: para que el modelo NK tenga una solución <em>única y estable</em> (no indeterminada) bajo una regla \\(i_t=\\phi_\\pi \\pi_t+\\ldots\\), se requiere típicamente:",
+ c:["Unicidad del equilibrio","Regla de Taylor","Regla forward looking"],
+ opts:[
+  "\\(\\phi_\\pi<1\\), para que la respuesta de la tasa no amplifique en exceso las perturbaciones de demanda y exista una solución acotada.",
+  "\\(\\phi_\\pi=1\\), de modo que la tasa real permanezca constante y el sistema no incorpore dinámica explosiva adicional al equilibrio.",
+  "Que el banco fije el agregado monetario en lugar de la tasa, pues con reglas de tasa el equilibrio resulta siempre indeterminado.",
+  "\\(\\phi_\\pi>1\\): la tasa nominal sube más que uno-a-uno con la inflación, de modo que la tasa real reacciona y ancla las expectativas."],
+ a:3,
+ fb:"Principio de Taylor: \\(\\phi_\\pi>1\\) ⇒ la tasa real sube cuando sube \\(\\pi\\), corrigiendo desviaciones. Si \\(\\phi_\\pi<1\\) aparecen equilibrios de sunspot (indeterminación)."},
+
+{tema:"Tema 9 — Discreción y política óptima",type:"mc",
+ q:"En el modelo de Barro-Gordon/Kydland-Prescott, el <em>sesgo inflacionario</em> bajo discreción surge porque:",
+ c:["Sesgo inflacionario","Inconsistencia dinámica (temporal)","Discrecionalidad"],
+ opts:[
+  "El banco subestima de forma sistemática la inflación rezagada al formar sus pronósticos, un sesgo que los agentes racionales no logran anticipar.",
+  "El banco desea un producto por encima del natural (\\(k>1\\)); dadas las expectativas tiene incentivo ex post a inflar, lo que los agentes anticipan.",
+  "La curva de Phillips es vertical, de modo que el banco infla buscando ganancias de producto que sí se materializan en el equilibrio final.",
+  "El compromiso eleva la pérdida social respecto a la discreción, lo que lleva al banco a preferir de manera deliberada una inflación positiva."],
+ a:1,
+ fb:"Es inconsistencia temporal: el óptimo ex ante (\\(\\pi=0\\)) no es óptimo ex post; el equilibrio de Nash tiene \\(\\pi>0\\) y \\(y=y^n\\)."},
+
+{tema:"Tema 9 — Discreción y política óptima",type:"open",
+ q:"Deriva el <b>sesgo inflacionario</b> de equilibrio en Barro-Gordon con pérdida \\(L=\\tfrac12(\\pi^2+\\lambda(y-ky^n)^2)\\), \\(k>1\\), y oferta \\(y=y^n+a(\\pi-\\pi^e)\\). Luego discute tres soluciones: <b>Rogoff</b> (banquero conservador), <b>contrato Walsh</b> y <b>reputación</b>.",
+ c:["Sesgo inflacionario","Inconsistencia dinámica (temporal)","Preferencias (banquero central conservador — Rogoff)","Contratos óptimos (Walsh)","Reputación"],
+ sol:`<ul>
+ <li><b>Discreción:</b> el banco toma \\(\\pi^e\\) dado y minimiza \\(L\\). CPO: \\(\\pi=\\lambda a (ky^n - y)= \\lambda a\\,[\\,(k-1)y^n - a(\\pi-\\pi^e)\\,]\\).</li>
+ <li>ER ⇒ \\(\\pi=\\pi^e\\) ⇒ \\(y=y^n\\). Resolviendo: \\(\\displaystyle \\pi^{disc}=\\lambda a (k-1)y^n>0\\) — <b>sesgo inflacionario</b>, sin ganancia de producto. Pérdida mayor que bajo compromiso (\\(\\pi=0\\)).</li>
+ <li><b>Rogoff:</b> delegar a un banquero con \\(\\lambda_{CB}<\\lambda\\) (más averso a la inflación) reduce el sesgo \\(\\big(\\propto \\lambda_{CB}\\big)\\), pero a costa de peor estabilización de choques de oferta — <b>trade-off sesgo/estabilización</b>.</li>
+ <li><b>Contrato Walsh:</b> imponer al banquero una penalidad lineal en inflación \\(t\\,\\pi\\) (tipo "principal-agente") con \\(t=\\lambda a(k-1)y^n\\) elimina el sesgo <em>sin</em> sacrificar respuesta a choques — solución de primer mejor.</li>
+ <li><b>Reputación:</b> en juego repetido, el banco sostiene baja inflación porque desviarse destruye la credibilidad futura (estrategias de gatillo); funciona si el descuento del futuro no es muy alto.</li></ul>`},
+
+{tema:"Tema 9 — Discreción y política óptima",type:"mc",
+ q:"La \"divine coincidence\" en el modelo NK básico significa que:",
+ c:["Divine coincidence","Reglas vs. discreción en política monetaria","Compromiso (commitment) y credibilidad"],
+ opts:[
+  "Que el banco puede alcanzar de manera simultánea inflación cero y pleno empleo, incluso ante la presencia de choques de oferta adversos.",
+  "Que la discreción replica el resultado del compromiso siempre que el nivel de producto natural se mantenga constante en el tiempo.",
+  "Que estabilizar la inflación equivale a estabilizar la brecha al no existir trade-off; la propiedad desaparece ante un choque de costos.",
+  "Que sin rigideces reales la política óptima coincide bajo reglas y bajo discreción, lo que elimina por completo el sesgo inflacionario."],
+ a:2,
+ fb:"Sin choque de costos, la NKPC liga \\(\\pi\\) a la brecha; cerrar la brecha ⇒ \\(\\pi=0\\). Un choque cost-push rompe la coincidencia y crea el trade-off relevante para política óptima."},
+
+{tema:"Tema 10 — Apéndice: solución con ER",type:"open",
+ q:"Explica el principio de <b>equivalencia de certidumbre</b> en modelos lineales-cuadráticos con ER y descríbelo dentro del <b>método básico de solución</b>. ¿Por qué permite resolver el modelo determinístico y luego \"añadir\" la incertidumbre vía esperanzas?",
+ c:["Equivalencia de certidumbre (certainty equivalence)","Método básico de solución con ER","Ley de expectativas iteradas (apéndice)"],
+ sol:`<ul>
+ <li><b>Equivalencia de certidumbre:</b> en un problema con objetivo cuadrático y restricciones lineales, la regla óptima depende solo de los <em>valores esperados</em> de las variables de estado, no de sus varianzas. Las funciones de política son las mismas que en el caso sin incertidumbre, reemplazando variables por sus esperanzas condicionales.</li>
+ <li><b>Método básico:</b> (1) escribir el sistema lineal en expectativas; (2) resolver la versión determinística por coeficientes indeterminados / iteración forward; (3) sustituir \\(x_{t+j}\\) por \\(E_t x_{t+j}\\) usando la <em>ley de expectativas iteradas</em>.</li>
+ <li><b>Por qué funciona:</b> la linealidad hace que el operador esperanza "pase a través" de las ecuaciones; los términos de segundo orden (varianzas) no entran en las CPO de primer orden ⇒ se puede separar el problema determinístico de la corrección estocástica.</li>
+ <li><b>Límite:</b> falla con no linealidades o aversión al riesgo de orden superior (precaución), donde la varianza sí importa.</li></ul>`},
+
+{tema:"Tema 11 — Complementario (Romer cap. 11)",type:"mc",
+ q:"La curva de Laffer del señoreaje: el ingreso real por señoreaje \\(S=\\dot{M}/P = \\mu\\, m(\\,i\\,)\\) tiene forma de campana en \\(\\mu\\). ¿Qué implica para una economía en hiperinflación situada a la derecha del máximo?",
+ c:["Señoreaje e hiperinflación","Señoreaje e inflación","Inflación y crecimiento del dinero"],
+ opts:[
+  "Acelerar la emisión reduce el señoreaje real, porque la caída de los saldos reales demandados \\(m(i)\\) domina al alza de \\(\\mu\\).",
+  "Acelerar la emisión aumenta el señoreaje real de forma acotada, ya que el alza de \\(\\mu\\) compensa la menor demanda de saldos reales.",
+  "El señoreaje real queda sin cambios, pues la demanda de dinero no responde a las expectativas de inflación en el corto plazo.",
+  "El señoreaje real solo se eleva si la demanda de dinero es muy inelástica respecto a la tasa de interés nominal vigente."],
+ a:0,
+ fb:"Más allá del pico, ↑\\(\\mu\\Rightarrow\\)↑\\(\\pi^e\\Rightarrow\\)↑\\(i\\Rightarrow\\)↓\\(m\\) más que proporcional ⇒ menor recaudo real. Diagnóstico clásico de las hiperinflaciones."},
+
+{tema:"Tema 11 — Complementario (Romer cap. 11)",type:"open",
+ q:"Enuncia la <b>teoría de las expectativas</b> de la estructura temporal de tasas y deriva por qué la pendiente de la curva de rendimientos informa sobre la senda esperada de tasas cortas (y, vía la política, sobre expectativas de inflación). Menciona el papel de la prima por plazo.",
+ c:["Teoría de las expectativas de la estructura temporal","Estructura temporal de tasas de interés","Inflación y crecimiento del dinero"],
+ sol:`<ul>
+ <li><b>Teoría de expectativas (pura):</b> la tasa larga a \\(n\\) periodos es el promedio de las tasas cortas esperadas: \\(\\displaystyle i_t^{(n)}\\approx\\frac1n\\sum_{k=0}^{n-1}E_t\\,i_{t+k}^{(1)}\\). Surge del arbitraje entre invertir largo o rolar corto bajo neutralidad al riesgo.</li>
+ <li><b>Pendiente:</b> curva con pendiente positiva ⇒ el mercado espera <b>tasas cortas más altas</b> en el futuro (a menudo, expansión/mayor inflación esperada). Pendiente invertida ⇒ se esperan recortes (señal recesiva).</li>
+ <li><b>Política e inflación:</b> como el banco mueve la tasa corta según inflación, la curva incorpora la trayectoria esperada de política, y por tanto expectativas de inflación.</li>
+ <li><b>Prima por plazo:</b> en la práctica \\(i_t^{(n)}=\\frac1n\\sum E_t i^{(1)}+\\text{prima}_n\\). La prima (riesgo/term premium) sesga la lectura pura ⇒ hay que descontarla para inferir expectativas.</li></ul>`},
+
+{tema:"Tema 12 — Complementario (Walsh cap. 4)",type:"mc",
+ q:"Teoría fiscal del nivel de precios (FTPL). Bajo un régimen <em>no ricardiano</em>, ¿cómo se determina el nivel de precios?",
+ c:["Teoría fiscal del nivel de precios","Políticas fiscales ricardianas y no ricardianas","Restricción presupuestaria del gobierno"],
+ opts:[
+  "El gobierno ajusta sus impuestos futuros para respaldar cualquier nivel de precios, de modo que el dinero ancla el precio en el largo plazo.",
+  "El nivel de precios ajusta para que el valor real de la deuda nominal iguale el valor presente de los superávits primarios futuros.",
+  "El nivel de precios lo determina la oferta monetaria, mientras la política fiscal se adapta pasivamente a la restricción del gobierno.",
+  "La deuda nominal es irrelevante para el precio, que queda fijado por la condición de paridad entre el dinero y los bonos públicos."],
+ a:1,
+ fb:"No ricardiano: superávits exógenos; \\(\\frac{B_{t-1}}{P_t}=E_t\\sum \\text{(superávits reales descontados)}\\). \\(P_t\\) es la variable de ajuste. Ricardiano: la política fiscal respalda cualquier \\(P\\), y el dinero ancla precios."},
+
+{tema:"Tema 12 — Complementario (Walsh cap. 4)",type:"open",
+ q:"En el <b>modelo de Cagan</b> de demanda de dinero \\(m_t-p_t=-\\alpha(E_t p_{t+1}-p_t)\\), muestra la solución fundamental y explica cómo aparecen la <b>hiperinflación racional</b> y los <b>equilibrios múltiples</b> (burbujas/sunspots).",
+ c:["Modelo de Cagan","Hiperinflación racional","Equilibrios múltiples","Restricción presupuestaria del gobierno"],
+ sol:`<ul>
+ <li><b>Forma forward:</b> \\(p_t=\\frac{1}{1+\\alpha}\\sum_{j\\ge0}\\left(\\frac{\\alpha}{1+\\alpha}\\right)^j E_t m_{t+j}\\). La <b>solución fundamental</b> liga el precio al valor presente de la oferta monetaria esperada.</li>
+ <li><b>Solución general:</b> \\(p_t=p_t^{fund}+b_t\\), con \\(b_t\\) cumpliendo \\(E_t b_{t+1}=\\frac{1+\\alpha}{\\alpha}b_t\\) — un término de <b>burbuja</b> explosivo. Si \\(b_0\\neq0\\), \\(p_t\\to\\infty\\): <b>hiperinflación racional</b> autovalidada por expectativas, aun con \\(m\\) constante.</li>
+ <li><b>Equilibrios múltiples:</b> cualquier \\(b_0\\) compatible con las CPO es un equilibrio ⇒ continuo de trayectorias (incluyendo sunspots). La condición de transversalidad / no explosividad selecciona el fundamental.</li>
+ <li><b>Vínculo fiscal:</b> si la emisión financia déficits (restricción del gobierno), \\(E_t m_{t+j}\\) crece ⇒ refuerza dinámicas hiperinflacionarias; la estabilización exige ajuste fiscal creíble.</li></ul>`},
+
+{tema:"Tema 12 — Complementario (Walsh cap. 4)",type:"open",
+ q:"Plantea el problema de <b>tributación óptima</b> à la Ramsey con señoreaje: el gobierno minimiza la distorsión total financiando un gasto dado con impuestos distorsionantes y el impuesto inflacionario. Deriva la intuición de \"igualar costos marginales de distorsión\" y discute cuándo la regla de Friedman (\\(i=0\\)) sigue siendo óptima.",
+ c:["Tributación óptima y señoreaje","Problema de Ramsey","Balance presupuestario intertemporal"],
+ sol:`<ul>
+ <li><b>Problema de Ramsey:</b> elegir tasas impositivas (incl. inflación) para financiar \\(g\\) maximizando bienestar sujeto a la <b>restricción presupuestaria intertemporal</b> del gobierno. Todos los instrumentos son distorsionantes (no hay suma fija).</li>
+ <li><b>Condición de optimalidad:</b> igualar el <em>costo marginal de fondos públicos</em> entre fuentes — el costo marginal de distorsión de recaudar un peso más vía impuesto al trabajo/consumo debe igualar el de recaudarlo vía impuesto inflacionario. El dinero se trata como un bien o insumo más a gravar (Phelps).</li>
+ <li><b>Tensión con Friedman:</b> el argumento de Phelps sugiere \\(i>0\\) (gravar saldos como cualquier bien). Pero si la función de producción/utilidad hace al dinero un <em>insumo intermedio</em> o el consumo es separable y homotético (Chari-Kehoe-Christiano / Correia-Teles), reaparece la <b>regla de Friedman</b> (\\(i=0\\)): no conviene distorsionar el "insumo dinero".</li>
+ <li><b>Conclusión:</b> la optimalidad de \\(i=0\\) depende de la estructura de preferencias/tecnología; con esas condiciones, el impuesto inflacionario es dominado por impuestos directos.</li></ul>`}
+];
+
+// ---- RENDER ----
+const examEl = document.getElementById('exam');
+let currentTema = "";
+QUESTIONS.forEach((Q,idx)=>{
+  if(Q.tema!==currentTema){
+    currentTema=Q.tema;
+    const h=document.createElement('div');h.className='tema';h.textContent=Q.tema;examEl.appendChild(h);
+  }
+  const d=document.createElement('div');d.className='q';d.id='q'+idx;
+  let html = `<div class="top"><span class="qnum">${idx+1}</span>`+
+    (Q.type==='mc'?'<span class="badge mc">Opción múltiple</span>':'<span class="badge open">Abierta / derivación</span>')+
+    `</div><div class="prompt">${Q.q}</div>`;
+  html += chips(Q.c);
+  if(Q.type==='mc'){
+    html += '<ul class="opts">'+Q.opts.map((o,i)=>
+      `<li><label data-opt="${i}"><input type="radio" name="q${idx}" value="${i}" onchange="markAnswered()"><span>${o}</span></label></li>`).join('')+'</ul>';
+    html += `<div class="btnrow"><button onclick="checkOne(${idx})">Comprobar esta</button></div>`;
+    html += `<div class="feedback" id="fb${idx}"></div>`;
+  } else {
+    html += `<details class="sol"><summary>Ver solución modelo</summary><div class="body">${Q.sol}</div></details>`;
+    html += `<div class="checkself"><button onclick="toggleSelf(${idx},true)">✔ La tenía clara</button><button onclick="toggleSelf(${idx},false)">↺ A repasar</button><span class="feedback" id="fb${idx}"></span></div>`;
+  }
+  d.innerHTML=html;examEl.appendChild(d);
+});
+
+const answered = {};
+const selfState = {};
+
+function markAnswered(){updateProgress();}
+function updateProgress(){
+  const total=QUESTIONS.length;
+  let done=0;
+  QUESTIONS.forEach((Q,i)=>{
+    if(Q.type==='mc'){ if(document.querySelector(`input[name="q${i}"]:checked`)) done++; }
+    else { if(selfState[i]!==undefined) done++; }
+  });
+  const pct=Math.round(done/total*100);
+  document.getElementById('barFill').style.width=pct+'%';
+  document.getElementById('barLabel').textContent=`${done} de ${total} respondidas (${pct}%)`;
+  let openDone=Object.keys(selfState).length;
+  document.getElementById('openCount').textContent=`${openDone} / 13 abiertas marcadas`;
+}
+function checkOne(i){
+  const Q=QUESTIONS[i];
+  const sel=document.querySelector(`input[name="q${i}"]:checked`);
+  const fb=document.getElementById('fb'+i);
+  const labels=document.querySelectorAll(`#q${i} .opts label`);
+  labels.forEach(l=>l.classList.remove('correct','wrong'));
+  if(!sel){fb.className='feedback bad show';fb.textContent='Selecciona una opción primero.';return;}
+  const v=parseInt(sel.value);
+  labels[Q.a].classList.add('correct');
+  if(v===Q.a){fb.className='feedback ok show';fb.innerHTML='✅ Correcto. '+Q.fb;}
+  else{labels[v].classList.add('wrong');fb.className='feedback bad show';fb.innerHTML='❌ No exactamente. '+Q.fb;}
+  if(window.MathJax)MathJax.typesetPromise([fb]);
+  answered[i]=v;
+}
+function toggleSelf(i,clear){
+  selfState[i]=clear;
+  const fb=document.getElementById('fb'+i);
+  fb.className='feedback '+(clear?'ok':'bad')+' show';
+  fb.textContent=clear?'Marcada como dominada.':'Marcada para repasar — revisa los conceptos de arriba.';
+  updateProgress();
+}
+function gradeAll(){
+  let score=0;
+  QUESTIONS.forEach((Q,i)=>{ if(Q.type==='mc'){ checkOne(i); if(answered[i]===Q.a)score++; }});
+  document.getElementById('mcScore').textContent=score;
+  window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+}
+function resetExam(){
+  if(!confirm('¿Reiniciar todas las respuestas?'))return;
+  document.querySelectorAll('input[type=radio]').forEach(r=>r.checked=false);
+  document.querySelectorAll('.opts label').forEach(l=>l.classList.remove('correct','wrong'));
+  document.querySelectorAll('.feedback').forEach(f=>{f.className='feedback';f.textContent='';});
+  document.querySelectorAll('.sol').forEach(s=>s.removeAttribute('open'));
+  for(const k in answered)delete answered[k];
+  for(const k in selfState)delete selfState[k];
+  document.getElementById('mcScore').textContent='0';
+  updateProgress();
+}
+// chip click -> obsidian
+document.addEventListener('click',e=>{
+  const c=e.target.closest('.chip');
+  if(c){e.preventDefault();window.location.href=obs(c.dataset.note);}
+});
+updateProgress();
+</script>
 </body>
 </html>
