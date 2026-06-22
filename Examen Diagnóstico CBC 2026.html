@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Examen Diagnóstico — Banca Central 2026 (Nivel Doctorado)</title>
+<script>
+window.MathJax = {
+  tex: { inlineMath: [['\\(','\\)'],['$','$']], displayMath: [['$$','$$'],['\\[','\\]']] },
+  svg: { fontCache: 'global' }
+};
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/3.2.2/es5/tex-svg.min.js"></script>
+<style>
+:root{
+  --bg:#0f1419; --panel:#171d26; --panel2:#1d2530; --ink:#e6edf3; --muted:#9bb0c4;
+  --accent:#4cc2ff; --accent2:#a78bfa; --ok:#39d98a; --bad:#ff6b6b; --line:#2a3340;
+  --chip:#22303f; --chipink:#8fd3ff; --warn:#ffcc66;
+}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;line-height:1.6;}
+.wrap{max-width:920px;margin:0 auto;padding:32px 20px 120px;}
+header.hero{border:1px solid var(--line);background:linear-gradient(180deg,#1a2230,#141a23);border-radius:16px;padding:28px 28px 22px;margin-bottom:24px;}
+header.hero h1{margin:0 0 6px;font-size:1.6rem;letter-spacing:.2px;}
+header.hero .sub{color:var(--muted);font-size:.96rem;}
+.meta{display:flex;flex-wrap:wrap;gap:10px;margin-top:16px;}
+.pill{background:var(--panel2);border:1px solid var(--line);color:var(--muted);font-size:.8rem;padding:5px 11px;border-radius:999px;}
+.howto{background:#16202b;border-left:3px solid var(--accent);border-radius:8px;padding:14px 16px;margin-top:18px;font-size:.9rem;color:var(--muted);}
+.howto b{color:var(--ink);}
+.vaultbox{margin-top:14px;font-size:.82rem;color:var(--muted);display:flex;align-items:center;gap:8px;flex-wrap:wrap;}
+.vaultbox input{background:#0c1118;border:1px solid var(--line);color:var(--ink);border-radius:7px;padding:6px 9px;font-size:.82rem;min-width:230px;}
+.progress-wrap{position:sticky;top:0;z-index:20;background:rgba(15,20,25,.92);backdrop-filter:blur(6px);padding:10px 0;margin:-10px 0 14px;}
+.bar{height:8px;background:var(--panel2);border-radius:999px;overflow:hidden;border:1px solid var(--line);}
+.bar > span{display:block;height:100%;width:0;background:linear-gradient(90deg,var(--accent),var(--accent2));transition:width .3s;}
+.barlabel{font-size:.78rem;color:var(--muted);margin-top:5px;}
+.tema{margin:30px 0 10px;font-size:1.05rem;color:var(--accent2);border-bottom:1px dashed var(--line);padding-bottom:6px;}
+.q{background:var(--panel);border:1px solid var(--line);border-radius:14px;padding:20px 22px;margin:16px 0;}
+.q .top{display:flex;align-items:center;gap:10px;margin-bottom:8px;flex-wrap:wrap;}
+.qnum{background:var(--accent);color:#06141f;font-weight:700;border-radius:8px;padding:2px 10px;font-size:.85rem;}
+.badge{font-size:.72rem;padding:3px 9px;border-radius:999px;border:1px solid var(--line);color:var(--muted);}
+.badge.mc{color:#8fd3ff;border-color:#264a5e;}
+.badge.open{color:#d6c2ff;border-color:#3d3160;}
+.badge.tema{color:var(--muted);}
+.prompt{font-size:1rem;margin:6px 0 12px;}
+.concepts{margin:12px 0 4px;}
+.concepts .lbl{font-size:.74rem;text-transform:uppercase;letter-spacing:.6px;color:var(--muted);margin-bottom:6px;}
+.chip{display:inline-block;background:var(--chip);color:var(--chipink);border:1px solid #2b455a;border-radius:999px;padding:4px 11px;margin:3px 5px 3px 0;font-size:.82rem;text-decoration:none;cursor:pointer;transition:.15s;}
+.chip:hover{background:#2c4760;border-color:var(--accent);}
+.chip::before{content:"📓 ";font-size:.78rem;}
+.opts{margin:10px 0 4px;list-style:none;padding:0;}
+.opts li{margin:7px 0;}
+.opts label{display:flex;gap:10px;align-items:flex-start;background:var(--panel2);border:1px solid var(--line);border-radius:10px;padding:10px 13px;cursor:pointer;transition:.12s;}
+.opts label:hover{border-color:var(--accent);}
+.opts input{margin-top:4px;}
+.opts label.correct{border-color:var(--ok);background:#16291f;}
+.opts label.wrong{border-color:var(--bad);background:#2a1818;}
+.btnrow{margin-top:12px;display:flex;gap:10px;flex-wrap:wrap;}
+button{font-family:inherit;font-size:.86rem;border-radius:9px;padding:8px 15px;border:1px solid var(--line);background:var(--panel2);color:var(--ink);cursor:pointer;transition:.12s;}
+button:hover{border-color:var(--accent);}
+button.primary{background:var(--accent);color:#06141f;font-weight:700;border-color:var(--accent);}
+.feedback{margin-top:10px;font-size:.9rem;padding:10px 13px;border-radius:9px;display:none;}
+.feedback.show{display:block;}
+.feedback.ok{background:#16291f;color:var(--ok);border:1px solid #1f6e48;}
+.feedback.bad{background:#2a1818;color:#ff9a9a;border:1px solid #6e2424;}
+.sol{margin-top:12px;border:1px solid var(--line);border-radius:10px;overflow:hidden;}
+.sol summary{cursor:pointer;padding:11px 14px;background:var(--panel2);font-weight:600;color:var(--warn);font-size:.9rem;list-style:none;}
+.sol summary::-webkit-details-marker{display:none;}
+.sol summary::before{content:"▸ ";}
+.sol[open] summary::before{content:"▾ ";}
+.sol .body{padding:14px 16px;font-size:.93rem;color:#dbe6f0;border-top:1px solid var(--line);}
+.sol .body ul{margin:8px 0;padding-left:20px;}
+.checkself{display:flex;gap:8px;margin-top:10px;}
+.checkself button{flex:0 0 auto;}
+.scorecard{position:fixed;bottom:0;left:0;right:0;background:rgba(15,20,25,.96);backdrop-filter:blur(8px);border-top:1px solid var(--line);padding:14px 20px;z-index:30;}
+.scorecard .inner{max-width:920px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;}
+.scorecard .num{font-size:1.05rem;font-weight:700;}
+.scorecard small{color:var(--muted);}
+footer{color:var(--muted);font-size:.82rem;margin-top:40px;text-align:center;border-top:1px solid var(--line);padding-top:18px;}
+code{background:#0c1118;padding:1px 5px;border-radius:5px;font-size:.86em;color:#9fe0ff;}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header class="hero">
+  <h1>🏦 Examen Diagnóstico — Curso de Banca Central 2026</h1>
+  <div class="sub">Nivel doctorado · 26 ejercicios · Basado en Mishkin (cap. 15, 19), Walsh (cap. 2, 4–8), Romer (cap. 6, 7, 11) y las <em>Notas de política monetaria</em> (BanRep, 2025).</div>
+  <div class="meta">
+    <span class="pill">⏱️ Sugerido: 3–4 h</span>
+    <span class="pill">12 temas</span>
+    <span class="pill">13 opción múltiple · 13 abiertas</span>
+    <span class="pill">Autocalificable</span>
+  </div>
+  <div class="howto">
+    <b>Cómo funciona.</b> Resuelve primero <em>sin mirar</em>. Cada pregunta lista los <b>conceptos que necesitas</b> dominar: si alguno no lo tienes claro, presiónalo y te llevará a la nota respectiva en <b>Obsidian</b>. Aprende, regresa y responde. Las preguntas de opción múltiple se autocalifican; las abiertas traen una <b>solución modelo</b> desplegable que tú comparas con tu respuesta.
+  </div>
+  <div class="vaultbox">
+    🔗 <span>Nombre de tu vault en Obsidian:</span>
+    <input id="vaultName" value="Curso Banca Central" />
+    <span style="opacity:.7">(ajústalo solo si tu vault tiene otro nombre)</span>
+  </div>
+</header>
+
+<div class="progress-wrap">
+  <div class="bar"><span id="barFill"></span></div>
+  <div class="barlabel" id="barLabel">0 de 26 respondidas</div>
+</div>
+
+<div id="exam"></div>
+
+<footer>
+  Examen diagnóstico generado a partir del vault <b>CBC 2026</b>. Los chips abren <code>obsidian://open</code>. <br>
+  Para que los enlaces funcionen, Obsidian debe estar instalado y el vault abierto al menos una vez.
+</footer>
+
+</div>
+
+<div class="scorecard">
+  <div class="inner">
+    <div>
+      <div class="num"><span id="mcScore">0</span> / 13 <small>opción múltiple</small></div>
+      <small id="openCount">0 / 13 abiertas marcadas como repasadas</small>
+    </div>
+    <div class="btnrow" style="margin:0">
+      <button onclick="gradeAll()">Calificar opción múltiple</button>
+      <button class="primary" onclick="resetExam()">Reiniciar</button>
+    </div>
+  </div>
+</div>
+
+<script>
+const VAULT_DEFAULT = "Curso Banca Central";
+function obs(note){
+  const v = (document.getElementById('vaultName').value || VAULT_DEFAULT).trim();
+  return "obsidian://open?vault=" + encodeURIComponent(v) + "&file=" + encodeURIComponent(note);
+}
+function chips(list){
+  return '<div class="concepts"><div class="lbl">Conceptos que necesitas</div>' +
+    list.map(n=>`<a class="chip" data-note="${n.replace(/"/g,'&quot;')}">${n}</a>`).join('') + '</div>';
+}
+
+// ---- BANCO DE PREGUNTAS ----
+const QUESTIONS = [
+{tema:"Tema 1 — Introducción",type:"mc",
+ q:"En un esquema de inflación objetivo, el banco anuncia una meta cuantitativa y rinde cuentas sobre ella. ¿Cuál afirmación captura mejor por qué la <em>credibilidad</em> es condición necesaria —y no solo deseable— para la eficacia del esquema?",
+ c:["Esquema de inflación objetivo","Credibilidad de la política monetaria","Independencia del banco central","Canal de las expectativas"],
+ opts:[
+  "La credibilidad reduce la prima de riesgo soberano y abarata la deuda pública, lo que da espacio fiscal para que el banco no deba monetizar déficits.",
+  "Al anclar las expectativas de inflación en la meta, reduce el traspaso de choques a los precios y la razón de sacrificio de toda desinflación.",
+  "La transparencia sobre la función de reacción estabiliza el multiplicador monetario, volviendo predecible la velocidad del dinero en el corto plazo.",
+  "Bajo expectativas racionales, garantiza que tanto los choques anticipados como los no anticipados sean neutrales sobre el nivel de producto."],
+ a:1,
+ fb:"El anclaje de expectativas es el mecanismo: expectativas ancladas ⇒ menor traspaso de choques a inflación y menor razón de sacrificio."},
+
+{tema:"Tema 1 — Introducción",type:"open",
+ q:"Explica el <b>canal de expectativas</b> de transmisión y argumenta por qué puede amplificar o anular el canal tradicional de tasa de interés. Da un ejemplo de política de comunicación (forward guidance) que opere por este canal.",
+ c:["Canales de transmisión de la política monetaria","Canal de las expectativas","Canal de la tasa de interés y de crédito","Credibilidad de la política monetaria"],
+ sol:`<ul>
+ <li><b>Canal tradicional:</b> ↑ tasa de intervención ⇒ ↑ tasas reales de mercado ⇒ ↓ consumo/inversión ⇒ ↓ demanda agregada ⇒ ↓ inflación.</li>
+ <li><b>Canal de expectativas:</b> las decisiones de gasto y fijación de precios dependen de la <em>trayectoria esperada</em> de tasas e inflación, no solo de la tasa actual. Si los agentes creen que el banco mantendrá la meta, las expectativas se anclan.</li>
+ <li><b>Amplificación:</b> un anuncio creíble de endurecimiento futuro baja expectativas de inflación hoy, subiendo la tasa real esperada y reforzando el efecto contractivo aun antes de mover la tasa.</li>
+ <li><b>Anulación:</b> si el banco no es creíble (expectativas desancladas), un alza de tasa puede leerse como señal de que el banco "sabe algo malo", elevando primas y expectativas — contrarrestando el canal tradicional.</li>
+ <li><b>Ejemplo forward guidance:</b> "mantendremos la tasa baja hasta que la inflación converja a 3%" — compromete trayectoria futura y mueve la tasa real larga vía expectativas.</li></ul>`},
+
+{tema:"Tema 2 — Oferta de dinero",type:"mc",
+ q:"Considere el mercado de reservas en un régimen de <em>piso</em> (floor system) donde las reservas son abundantes y el banco central remunera las reservas a la tasa \\(i_{IOR}\\). Una compra de mercado abierto adicional, ¿qué efecto tiene sobre la tasa interbancaria de fondos federales \\(i_{ff}\\)?",
+ c:["Mercado de reservas","Operaciones de mercado abierto (OMA)","Tasa de interés sobre las reservas","Tasa de fondos federales (tasa interbancaria)"],
+ opts:[
+  "Cae de forma marcada: al desplazar la oferta a la derecha se recorre el tramo de pendiente negativa de la demanda de reservas.",
+  "Cae hasta situarse en la tasa de descuento, que opera como piso efectivo del corredor cuando las reservas son abundantes.",
+  "Sube levemente, porque el mayor volumen de reservas eleva el costo de oportunidad de prestar en el mercado interbancario.",
+  "Apenas varía: con reservas abundantes la demanda es horizontal en torno a \\(i_{IOR}\\), así que inyectar más reservas no mueve la tasa."],
+ a:3,
+ fb:"En el piso, la demanda de reservas es horizontal a \\(i_{IOR}\\) cuando hay exceso; por eso la Fed puede manejar el balance (QE) sin mover la tasa de política."},
+
+{tema:"Tema 2 — Oferta de dinero",type:"open",
+ q:"Deriva el <b>multiplicador monetario</b> \\(m\\) en el modelo con efectivo y exceso de reservas: parte de \\(M = C + D\\) y \\(MB = C + R\\), con razón efectivo–depósitos \\(c=C/D\\) y razón de reservas \\(r=R/D\\). Interpreta qué pasa con \\(m\\) en una crisis de confianza.",
+ c:["Multiplicador monetario","Base monetaria","Creación múltiple de depósitos"],
+ sol:`<ul>
+ <li>\\(M = C + D = (c+1)D\\), \\(MB = C + R = (c+r)D\\).</li>
+ <li>Dividiendo: \\(\\displaystyle m=\\frac{M}{MB}=\\frac{1+c}{c+r}\\), con \\(r=r_{req}+r_{exc}\\).</li>
+ <li>Como típicamente \\(c+r<1\\), se tiene \\(m>1\\): la base se "multiplica" vía creación de depósitos.</li>
+ <li><b>Crisis de confianza:</b> el público huye a efectivo (↑\\(c\\)) y los bancos acumulan reservas de precaución (↑\\(r_{exc}\\)). Ambos elevan el denominador ⇒ <b>\\(m\\) cae</b>. Aunque \\(MB\\) suba, \\(M\\) puede estancarse o caer (lección de 1930–33 y de 2008).</li></ul>`},
+
+{tema:"Tema 3 — Demanda de dinero",type:"mc",
+ q:"La ecuación cuantitativa \\(MV=PY\\). Bajo el supuesto monetarista clásico de \\(V\\) estable y \\(Y\\) en pleno empleo, ¿qué predice sobre la relación de largo plazo entre crecimiento del dinero e inflación, y qué propiedad del dinero está implícita?",
+ c:["Ecuación cuantitativa del dinero","Velocidad del dinero","Teoría cuantitativa del dinero","Neutralidad del dinero"],
+ opts:[
+  "La inflación iguala el crecimiento monetario solo cuando la velocidad crece al mismo ritmo que el producto real de la economía.",
+  "El crecimiento monetario afecta el producto real de forma duradera, pues la velocidad absorbe buena parte del ajuste nominal.",
+  "La inflación tiende a igualar el crecimiento del dinero menos el del producto, lo que refleja la neutralidad de largo plazo.",
+  "No puede establecerse una relación estable, porque la velocidad del dinero resulta marcadamente procíclica a lo largo del ciclo."],
+ a:2,
+ fb:"En tasas: \\(\\hat M+\\hat V=\\pi+\\hat Y\\); con \\(\\hat V\\approx0\\) ⇒ \\(\\pi\\approx\\hat M-\\hat Y\\). El dinero solo mueve nominales: neutralidad."},
+
+{tema:"Tema 3 — Demanda de dinero",type:"open",
+ q:"Explica el <b>overshooting</b> de Dornbusch del tipo de cambio ante una expansión monetaria sorpresiva, usando la paridad descubierta de tasas (UIP) y precios rígidos en el corto plazo. ¿Por qué el tipo de cambio se deprecia <em>más</em> que su nivel de largo plazo?",
+ c:["Sobrerreacción de la tasa de cambio (overshooting)","Condición de paridad de tasas de interés","Velocidad del dinero"],
+ sol:`<ul>
+ <li>Precios rígidos a corto ⇒ ↑\\(M\\) eleva \\(M/P\\) real ⇒ <b>baja la tasa de interés interna</b> \\(i\\).</li>
+ <li>UIP: \\(i = i^{*} + E[\\dot s]\\). Con \\(i<i^{*}\\), debe esperarse <b>apreciación futura</b> (\\(E[\\dot s]<0\\)).</li>
+ <li>Pero a largo plazo el tipo nominal se deprecia (neutralidad: \\(s\\) sube con \\(M\\)). Para que <em>desde hoy</em> se espere apreciación hacia ese nivel mayor, el tipo debe <b>saltar por encima</b> del nuevo nivel de largo plazo: <b>overshooting</b>.</li>
+ <li>Luego converge gradualmente apreciándose a medida que los precios se ajustan. La rigidez nominal es la causa del exceso de volatilidad cambiaria.</li></ul>`},
+
+{tema:"Tema 4 — Dinero en la función de utilidad (MIU)",type:"mc",
+ q:"En el modelo de Sidrauski con dinero en la función de utilidad, ¿qué resultado de <em>superneutralidad</em> se obtiene en estado estacionario y bajo qué supuesto clave puede romperse?",
+ c:["Dinero en la función de utilidad (MIU - Sidrauski)","Superneutralidad del dinero","No superneutralidad"],
+ opts:[
+  "El capital y el consumo de estado estacionario no dependen de la tasa de crecimiento del dinero; el resultado se rompe con oferta de trabajo endógena.",
+  "Los saldos reales son independientes de la inflación, aunque el capital de estado estacionario sí depende de la tasa de crecimiento del dinero a largo plazo.",
+  "La inflación no afecta el bienestar, porque la regla de Friedman fija la tasa nominal en cero bajo cualquier calibración del modelo.",
+  "El dinero es neutral pero no superneutral, ya que la inflación termina alterando de forma permanente el stock de capital de largo plazo."],
+ a:0,
+ fb:"Sidrauski: \\(k^{*}\\) depende solo de la tasa de preferencia temporal (regla de oro modificada), no de \\(\\mu\\). Con trabajo endógeno o separabilidad rota, deja de cumplirse."},
+
+{tema:"Tema 4 — Dinero en la función de utilidad (MIU)",type:"open",
+ q:"Partiendo de las condiciones de primer orden del hogar en el MIU, deriva la <b>demanda de dinero</b> \\(\\;\\frac{U_m}{U_c}=\\frac{i}{1+i}\\;\\) y muestra que la <b>regla de Friedman</b> (\\(i=0\\)) es óptima. Conecta con el costo en bienestar de la inflación.",
+ c:["Condiciones de primer orden","Tasa marginal de sustitución consumo-dinero","Demanda de dinero (en el MIU)","Regla de Friedman (tasa óptima de inflación)","Costo en bienestar de la inflación"],
+ sol:`<ul>
+ <li>El hogar maximiza \\(\\sum \\beta^t U(c_t,m_t)\\) sujeto a su restricción. Las CPO en \\(c\\), \\(m\\) y bonos dan la condición de no arbitraje entre tener dinero y bonos.</li>
+ <li>El costo de oportunidad de un peso real de saldos es \\(\\frac{i}{1+i}\\) (interés nominal sacrificado). En el óptimo: \\(\\displaystyle \\frac{U_m}{U_c}=\\frac{i}{1+i}\\).</li>
+ <li><b>Óptimo social:</b> producir dinero es casi sin costo (costo marginal ≈ 0). Eficiencia exige \\(U_m=0\\) en el margen ⇒ \\(\\frac{i}{1+i}=0\\Rightarrow i=0\\) — <b>regla de Friedman</b>.</li>
+ <li>Vía Fisher \\(i=r+\\pi\\), \\(i=0\\Rightarrow \\pi=-r\\): deflación a la tasa real. Saciar de liquidez elimina el "triángulo de Harberger" del impuesto inflacionario ⇒ minimiza el costo en bienestar.</li></ul>`},
+
+{tema:"Tema 5 — Expectativas racionales (info perfecta)",type:"mc",
+ q:"Bajo expectativas racionales con competencia e información perfectas (Romer 6.1), un cambio monetario <em>anticipado</em>:",
+ c:["Expectativas racionales","Vaciado de mercados (market clearing)","Solución de modelos con expectativas racionales"],
+ opts:[
+  "Eleva transitoriamente el producto por encima del natural mientras los precios relativos terminan de ajustarse a la nueva información.",
+  "Genera desempleo de corto plazo, pues los salarios nominales tardan en incorporar la política previamente anunciada por el banco.",
+  "Su efecto sobre el producto es indeterminado salvo que se especifique la elasticidad-interés de la demanda de dinero del modelo.",
+  "Afecta únicamente a las variables nominales y deja el producto en su nivel natural, porque precios y salarios se ajustan de inmediato."],
+ a:3,
+ fb:"Con vaciado de mercados y ER, lo anticipado ya está incorporado en precios: neutralidad. Solo lo no anticipado podría tener efectos reales (preludio a Lucas)."},
+
+{tema:"Tema 5 — Expectativas racionales (info perfecta)",type:"open",
+ q:"Resuelve por <b>coeficientes indeterminados</b> el modelo lineal \\(\\;y_t = a\\,E_t y_{t+1} + b\\,x_t,\\;\\) con \\(x_t\\) AR(1) \\(x_t=\\rho x_{t-1}+\\varepsilon_t\\) y \\(|a\\rho|<1\\). Encuentra la solución fundamental y explica el papel de la ley de expectativas iteradas.",
+ c:["Método de coeficientes indeterminados","Esperanza condicional","Ley de expectativas iteradas","Solución de modelos con expectativas racionales"],
+ sol:`<ul>
+ <li><b>Conjetura:</b> \\(y_t=\\phi x_t\\). Entonces \\(E_t y_{t+1}=\\phi E_t x_{t+1}=\\phi\\rho x_t\\).</li>
+ <li>Sustituyendo: \\(\\phi x_t = a\\phi\\rho x_t + b x_t\\) para todo \\(x_t\\) ⇒ \\(\\phi = a\\rho\\phi + b\\).</li>
+ <li><b>Solución:</b> \\(\\displaystyle \\phi=\\frac{b}{1-a\\rho}\\), de modo que \\(y_t=\\dfrac{b}{1-a\\rho}x_t\\).</li>
+ <li><b>Equivalencia forward:</b> iterando hacia adelante \\(y_t=b\\sum_{j\\ge0} a^j E_t x_{t+j}\\); con \\(E_t x_{t+j}=\\rho^j x_t\\) (ley de expectativas iteradas) se recupera la misma \\(\\phi\\). Se descarta la burbuja si \\(|a|<1\\) (solución fundamental, no explosiva).</li></ul>`},
+
+{tema:"Tema 6 — Corto plazo I (Modelo de Lucas)",type:"mc",
+ q:"En el modelo de islas de Lucas, cada productor observa el precio de su isla pero no el nivel general. ¿Qué determina la <em>pendiente</em> de la curva de oferta de Lucas \\(y_i=b(p_i-E[p\\,|\\,p_i])\\)?",
+ c:["Problema de extracción de señal","Curva de oferta de Lucas","Información imperfecta"],
+ opts:[
+  "Crece con la elasticidad-interés de la demanda de dinero, que regula cuánto se traslada un choque nominal a los precios de cada isla.",
+  "Crece cuando la varianza de los choques relativos es alta frente a la de los choques nominales agregados, por el peso de la señal.",
+  "Depende de la persistencia del choque monetario: cuanto más persistente, mayor la respuesta del producto a las sorpresas de precios.",
+  "Aumenta con el nivel medio de inflación, ya que precios más altos amplifican la respuesta de la oferta ante cada señal local."],
+ a:1,
+ fb:"Es un problema de extracción de señal: \\(b=\\sigma^2_{relativo}/(\\sigma^2_{relativo}+\\sigma^2_{agregado})\\) (en proporción). Más ruido nominal ⇒ se atribuye menos a lo real ⇒ oferta menos sensible."},
+
+{tema:"Tema 6 — Corto plazo I (Modelo de Lucas)",type:"open",
+ q:"Usando el problema de extracción de señal de Lucas, explica la predicción empírica contrastable: en países con alta varianza de la demanda nominal (alta inflación promedio), el <b>trade-off</b> producto–inflación es más plano. ¿Por qué? ¿Cómo se conecta con la crítica de Lucas?",
+ c:["Problema de extracción de señal","Variabilidad de la demanda y tasa de inflación promedio (evidencia internacional)","Curva de oferta de Lucas","Crítica de Lucas"],
+ sol:`<ul>
+ <li>El productor resuelve cuánto de \\(\\Delta p_i\\) es relativo (responder con producto) vs. agregado (no responder). El coeficiente de respuesta es \\(b=\\frac{\\sigma^2_{rel}}{\\sigma^2_{rel}+\\sigma^2_{agg}}\\).</li>
+ <li><b>Alta varianza nominal</b> (\\(\\sigma^2_{agg}\\) grande): racionalmente se atribuye la mayoría de los movimientos de precio a inflación general ⇒ <b>\\(b\\) pequeño</b> ⇒ la oferta responde poco a sorpresas de precios ⇒ <b>curva de Phillips/oferta más vertical (trade-off plano)</b>.</li>
+ <li><b>Evidencia (Lucas 1973):</b> en muestra de países, mayor volatilidad de demanda nominal ⇒ menor efecto real de las sorpresas monetarias. Confirmado cualitativamente.</li>
+ <li><b>Crítica de Lucas:</b> el parámetro \\(b\\) <em>no es estructural</em>: depende del régimen de política (de \\(\\sigma^2_{agg}\\)). Si el banco cambia su política, \\(b\\) cambia ⇒ no se pueden usar relaciones econométricas reducidas para evaluar política.</li></ul>`},
+
+{tema:"Tema 7 — Corto plazo II (Modelo de Taylor)",type:"mc",
+ q:"¿Cuál es la diferencia esencial entre el modelo de Fischer (precios/salarios predeterminados) y el de Taylor (contratos escalonados) respecto a la efectividad de la política monetaria?",
+ c:["Modelo de Fischer (precios predeterminados)","Modelo de Taylor (ajuste escalonado - staggered)","Contratos escalonados (staggered contracts)"],
+ opts:[
+  "En ambos casos solo la política no anticipada tiene efectos reales, ya que los contratos predeterminados neutralizan todo movimiento previsible del banco central.",
+  "En Fischer los precios son flexibles dentro del contrato, mientras que Taylor supone precios completamente fijos y carentes de contingencia a la información.",
+  "En Fischer la parte anticipada se neutraliza dentro del contrato contingente, pero el escalonamiento de Taylor sí genera rigidez agregada persistente.",
+  "En ambos la rigidez es real más que nominal, de modo que la política anticipada afecta el producto a través de la tasa de interés real de la economía."],
+ a:2,
+ fb:"Fischer: contratos multiperiodo pero contingentes a info ⇒ la parte anticipada se neutraliza dentro del contrato. Taylor: superposición de contratos ⇒ inercia nominal agregada."},
+
+{tema:"Tema 7 — Corto plazo II (Modelo de Taylor)",type:"open",
+ q:"Explica cómo los <b>contratos escalonados</b> de Taylor generan <em>persistencia</em> de la inflación y del producto que excede la duración de un contrato individual. ¿Qué papel juega la <b>rigidez real</b> para amplificar la rigidez nominal?",
+ c:["Contratos escalonados (staggered contracts)","Modelo de Taylor (ajuste escalonado - staggered)","Rigidez real (real rigidity)","Operadores de rezago (lag operators)"],
+ sol:`<ul>
+ <li><b>Escalonamiento:</b> solo una fracción de firmas reajusta cada periodo. Quien fija precio mira a los que ya fijaron (rezagados) y a los que fijarán (adelantados) ⇒ el salario/precio nuevo es promedio de pasado y futuro esperado.</li>
+ <li>Esto introduce <b>dependencia del rezago</b>: el nivel agregado de precios se ajusta gradualmente aun cuando cada contrato dure 2 periodos ⇒ la respuesta se "estira" más allá de la duración individual (raíz del polinomio de rezagos &lt; 1 pero positiva).</li>
+ <li><b>Rigidez real</b> (p. ej. demanda elástica, complementariedad estratégica): cada firma quiere su precio cerca del de las demás. Como muchas aún no ajustaron, la que reajusta <em>modera</em> su cambio ⇒ amplifica y prolonga el efecto de la rigidez nominal.</li>
+ <li>Sin rigidez real, las firmas reajustarían agresivamente y la rigidez nominal tendría efectos pequeños y breves (problema de Ball-Romer).</li></ul>`},
+
+{tema:"Tema 8 — Corto plazo III (Modelo Neokeynesiano)",type:"mc",
+ q:"La Curva de Phillips Neokeynesiana (NKPC) \\(\\pi_t=\\beta E_t\\pi_{t+1}+\\kappa\\, \\widetilde{mc}_t\\). ¿Qué implica su carácter <em>puramente forward-looking</em> para una desinflación creíble?",
+ c:["Curva de Phillips neokeynesiana (NKPC)","Costo marginal real","Modelo de Calvo (precios a la Calvo)"],
+ opts:[
+  "Una desinflación anunciada y creíble puede, en principio, lograrse con costo de producto nulo, porque la inflación de hoy depende de la esperada.",
+  "La desinflación exige una recesión proporcional al grado de rigidez de Calvo, ya que el costo marginal real debe caer de forma persistente.",
+  "La inflación queda determinada por su propio rezago, de modo que la política solo afecta los precios con un retraso de varios periodos.",
+  "El banco controla la inflación únicamente moviendo el costo marginal corriente, sin que las expectativas futuras jueguen un papel relevante."],
+ a:0,
+ fb:"Sin término backward-looking, \\(\\pi_t=\\kappa\\sum\\beta^j E_t \\widetilde{mc}_{t+j}\\). Si se anuncia menor mc futuro creíblemente, \\(\\pi\\) baja hoy sin recesión — el 'puzzle' de costo de sacrificio nulo del NK básico."},
+
+{tema:"Tema 8 — Corto plazo III (Modelo Neokeynesiano)",type:"open",
+ q:"Deriva la <b>NKPC</b> a partir del problema de fijación de precios de Calvo: fracción \\(1-\\theta\\) reajusta cada periodo, las demás mantienen su precio. Muestra el origen de \\(\\kappa=\\frac{(1-\\theta)(1-\\beta\\theta)}{\\theta}\\) (× elasticidad del mc).",
+ c:["Derivación de la NKPC","Modelo de Calvo (precios a la Calvo)","Probabilidad de ajuste de precios","Curva de Phillips neokeynesiana (NKPC)"],
+ sol:`<ul>
+ <li><b>Calvo:</b> cada firma reajusta con probabilidad \\(1-\\theta\\) por periodo, independiente de la historia. El reajuste óptimo \\(p_t^{*}\\) maximiza beneficios esperados descontados mientras el precio rija: \\(p_t^{*}=(1-\\beta\\theta)\\sum_{k\\ge0}(\\beta\\theta)^k E_t[\\,mc_{t+k}^{nom}\\,]\\) (precio = markup sobre costo marginal nominal esperado, ponderado).</li>
+ <li><b>Índice de precios:</b> \\(p_t=\\theta p_{t-1}+(1-\\theta)p_t^{*}\\) (los que no ajustan conservan \\(p_{t-1}\\)).</li>
+ <li>Combinando ambas y log-linealizando alrededor de inflación cero se obtiene \\(\\pi_t=\\beta E_t\\pi_{t+1}+\\kappa\\,\\widetilde{mc}_t\\).</li>
+ <li><b>Pendiente:</b> \\(\\displaystyle \\kappa=\\frac{(1-\\theta)(1-\\beta\\theta)}{\\theta}\\). Intuición: mayor \\(\\theta\\) (precios más rígidos, reajuste menos frecuente) ⇒ \\(\\kappa\\) menor ⇒ NKPC más plana, inflación menos sensible al costo marginal.</li></ul>`},
+
+{tema:"Tema 8 — Corto plazo III (Modelo Neokeynesiano)",type:"mc",
+ q:"Principio de Taylor y determinación del equilibrio: para que el modelo NK tenga una solución <em>única y estable</em> (no indeterminada) bajo una regla \\(i_t=\\phi_\\pi \\pi_t+\\ldots\\), se requiere típicamente:",
+ c:["Unicidad del equilibrio","Regla de Taylor","Regla forward looking"],
+ opts:[
+  "\\(\\phi_\\pi<1\\), para que la respuesta de la tasa no amplifique en exceso las perturbaciones de demanda y exista una solución acotada.",
+  "\\(\\phi_\\pi=1\\), de modo que la tasa real permanezca constante y el sistema no incorpore dinámica explosiva adicional al equilibrio.",
+  "Que el banco fije el agregado monetario en lugar de la tasa, pues con reglas de tasa el equilibrio resulta siempre indeterminado.",
+  "\\(\\phi_\\pi>1\\): la tasa nominal sube más que uno-a-uno con la inflación, de modo que la tasa real reacciona y ancla las expectativas."],
+ a:3,
+ fb:"Principio de Taylor: \\(\\phi_\\pi>1\\) ⇒ la tasa real sube cuando sube \\(\\pi\\), corrigiendo desviaciones. Si \\(\\phi_\\pi<1\\) aparecen equilibrios de sunspot (indeterminación)."},
+
+{tema:"Tema 9 — Discreción y política óptima",type:"mc",
+ q:"En el modelo de Barro-Gordon/Kydland-Prescott, el <em>sesgo inflacionario</em> bajo discreción surge porque:",
+ c:["Sesgo inflacionario","Inconsistencia dinámica (temporal)","Discrecionalidad"],
+ opts:[
+  "El banco subestima de forma sistemática la inflación rezagada al formar sus pronósticos, un sesgo que los agentes racionales no logran anticipar.",
+  "El banco desea un producto por encima del natural (\\(k>1\\)); dadas las expectativas tiene incentivo ex post a inflar, lo que los agentes anticipan.",
+  "La curva de Phillips es vertical, de modo que el banco infla buscando ganancias de producto que sí se materializan en el equilibrio final.",
+  "El compromiso eleva la pérdida social respecto a la discreción, lo que lleva al banco a preferir de manera deliberada una inflación positiva."],
+ a:1,
+ fb:"Es inconsistencia temporal: el óptimo ex ante (\\(\\pi=0\\)) no es óptimo ex post; el equilibrio de Nash tiene \\(\\pi>0\\) y \\(y=y^n\\)."},
+
+{tema:"Tema 9 — Discreción y política óptima",type:"open",
+ q:"Deriva el <b>sesgo inflacionario</b> de equilibrio en Barro-Gordon con pérdida \\(L=\\tfrac12(\\pi^2+\\lambda(y-ky^n)^2)\\), \\(k>1\\), y oferta \\(y=y^n+a(\\pi-\\pi^e)\\). Luego discute tres soluciones: <b>Rogoff</b> (banquero conservador), <b>contrato Walsh</b> y <b>reputación</b>.",
+ c:["Sesgo inflacionario","Inconsistencia dinámica (temporal)","Preferencias (banquero central conservador — Rogoff)","Contratos óptimos (Walsh)","Reputación"],
+ sol:`<ul>
+ <li><b>Discreción:</b> el banco toma \\(\\pi^e\\) dado y minimiza \\(L\\). CPO: \\(\\pi=\\lambda a (ky^n - y)= \\lambda a\\,[\\,(k-1)y^n - a(\\pi-\\pi^e)\\,]\\).</li>
+ <li>ER ⇒ \\(\\pi=\\pi^e\\) ⇒ \\(y=y^n\\). Resolviendo: \\(\\displaystyle \\pi^{disc}=\\lambda a (k-1)y^n>0\\) — <b>sesgo inflacionario</b>, sin ganancia de producto. Pérdida mayor que bajo compromiso (\\(\\pi=0\\)).</li>
+ <li><b>Rogoff:</b> delegar a un banquero con \\(\\lambda_{CB}<\\lambda\\) (más averso a la inflación) reduce el sesgo \\(\\big(\\propto \\lambda_{CB}\\big)\\), pero a costa de peor estabilización de choques de oferta — <b>trade-off sesgo/estabilización</b>.</li>
+ <li><b>Contrato Walsh:</b> imponer al banquero una penalidad lineal en inflación \\(t\\,\\pi\\) (tipo "principal-agente") con \\(t=\\lambda a(k-1)y^n\\) elimina el sesgo <em>sin</em> sacrificar respuesta a choques — solución de primer mejor.</li>
+ <li><b>Reputación:</b> en juego repetido, el banco sostiene baja inflación porque desviarse destruye la credibilidad futura (estrategias de gatillo); funciona si el descuento del futuro no es muy alto.</li></ul>`},
+
+{tema:"Tema 9 — Discreción y política óptima",type:"mc",
+ q:"La \"divine coincidence\" en el modelo NK básico significa que:",
+ c:["Divine coincidence","Reglas vs. discreción en política monetaria","Compromiso (commitment) y credibilidad"],
+ opts:[
+  "Que el banco puede alcanzar de manera simultánea inflación cero y pleno empleo, incluso ante la presencia de choques de oferta adversos.",
+  "Que la discreción replica el resultado del compromiso siempre que el nivel de producto natural se mantenga constante en el tiempo.",
+  "Que estabilizar la inflación equivale a estabilizar la brecha al no existir trade-off; la propiedad desaparece ante un choque de costos.",
+  "Que sin rigideces reales la política óptima coincide bajo reglas y bajo discreción, lo que elimina por completo el sesgo inflacionario."],
+ a:2,
+ fb:"Sin choque de costos, la NKPC liga \\(\\pi\\) a la brecha; cerrar la brecha ⇒ \\(\\pi=0\\). Un choque cost-push rompe la coincidencia y crea el trade-off relevante para política óptima."},
+
+{tema:"Tema 10 — Apéndice: solución con ER",type:"open",
+ q:"Explica el principio de <b>equivalencia de certidumbre</b> en modelos lineales-cuadráticos con ER y descríbelo dentro del <b>método básico de solución</b>. ¿Por qué permite resolver el modelo determinístico y luego \"añadir\" la incertidumbre vía esperanzas?",
+ c:["Equivalencia de certidumbre (certainty equivalence)","Método básico de solución con ER","Ley de expectativas iteradas (apéndice)"],
+ sol:`<ul>
+ <li><b>Equivalencia de certidumbre:</b> en un problema con objetivo cuadrático y restricciones lineales, la regla óptima depende solo de los <em>valores esperados</em> de las variables de estado, no de sus varianzas. Las funciones de política son las mismas que en el caso sin incertidumbre, reemplazando variables por sus esperanzas condicionales.</li>
+ <li><b>Método básico:</b> (1) escribir el sistema lineal en expectativas; (2) resolver la versión determinística por coeficientes indeterminados / iteración forward; (3) sustituir \\(x_{t+j}\\) por \\(E_t x_{t+j}\\) usando la <em>ley de expectativas iteradas</em>.</li>
+ <li><b>Por qué funciona:</b> la linealidad hace que el operador esperanza "pase a través" de las ecuaciones; los términos de segundo orden (varianzas) no entran en las CPO de primer orden ⇒ se puede separar el problema determinístico de la corrección estocástica.</li>
+ <li><b>Límite:</b> falla con no linealidades o aversión al riesgo de orden superior (precaución), donde la varianza sí importa.</li></ul>`},
+
+{tema:"Tema 11 — Complementario (Romer cap. 11)",type:"mc",
+ q:"La curva de Laffer del señoreaje: el ingreso real por señoreaje \\(S=\\dot{M}/P = \\mu\\, m(\\,i\\,)\\) tiene forma de campana en \\(\\mu\\). ¿Qué implica para una economía en hiperinflación situada a la derecha del máximo?",
+ c:["Señoreaje e hiperinflación","Señoreaje e inflación","Inflación y crecimiento del dinero"],
+ opts:[
+  "Acelerar la emisión reduce el señoreaje real, porque la caída de los saldos reales demandados \\(m(i)\\) domina al alza de \\(\\mu\\).",
+  "Acelerar la emisión aumenta el señoreaje real de forma acotada, ya que el alza de \\(\\mu\\) compensa la menor demanda de saldos reales.",
+  "El señoreaje real queda sin cambios, pues la demanda de dinero no responde a las expectativas de inflación en el corto plazo.",
+  "El señoreaje real solo se eleva si la demanda de dinero es muy inelástica respecto a la tasa de interés nominal vigente."],
+ a:0,
+ fb:"Más allá del pico, ↑\\(\\mu\\Rightarrow\\)↑\\(\\pi^e\\Rightarrow\\)↑\\(i\\Rightarrow\\)↓\\(m\\) más que proporcional ⇒ menor recaudo real. Diagnóstico clásico de las hiperinflaciones."},
+
+{tema:"Tema 11 — Complementario (Romer cap. 11)",type:"open",
+ q:"Enuncia la <b>teoría de las expectativas</b> de la estructura temporal de tasas y deriva por qué la pendiente de la curva de rendimientos informa sobre la senda esperada de tasas cortas (y, vía la política, sobre expectativas de inflación). Menciona el papel de la prima por plazo.",
+ c:["Teoría de las expectativas de la estructura temporal","Estructura temporal de tasas de interés","Inflación y crecimiento del dinero"],
+ sol:`<ul>
+ <li><b>Teoría de expectativas (pura):</b> la tasa larga a \\(n\\) periodos es el promedio de las tasas cortas esperadas: \\(\\displaystyle i_t^{(n)}\\approx\\frac1n\\sum_{k=0}^{n-1}E_t\\,i_{t+k}^{(1)}\\). Surge del arbitraje entre invertir largo o rolar corto bajo neutralidad al riesgo.</li>
+ <li><b>Pendiente:</b> curva con pendiente positiva ⇒ el mercado espera <b>tasas cortas más altas</b> en el futuro (a menudo, expansión/mayor inflación esperada). Pendiente invertida ⇒ se esperan recortes (señal recesiva).</li>
+ <li><b>Política e inflación:</b> como el banco mueve la tasa corta según inflación, la curva incorpora la trayectoria esperada de política, y por tanto expectativas de inflación.</li>
+ <li><b>Prima por plazo:</b> en la práctica \\(i_t^{(n)}=\\frac1n\\sum E_t i^{(1)}+\\text{prima}_n\\). La prima (riesgo/term premium) sesga la lectura pura ⇒ hay que descontarla para inferir expectativas.</li></ul>`},
+
+{tema:"Tema 12 — Complementario (Walsh cap. 4)",type:"mc",
+ q:"Teoría fiscal del nivel de precios (FTPL). Bajo un régimen <em>no ricardiano</em>, ¿cómo se determina el nivel de precios?",
+ c:["Teoría fiscal del nivel de precios","Políticas fiscales ricardianas y no ricardianas","Restricción presupuestaria del gobierno"],
+ opts:[
+  "El gobierno ajusta sus impuestos futuros para respaldar cualquier nivel de precios, de modo que el dinero ancla el precio en el largo plazo.",
+  "El nivel de precios ajusta para que el valor real de la deuda nominal iguale el valor presente de los superávits primarios futuros.",
+  "El nivel de precios lo determina la oferta monetaria, mientras la política fiscal se adapta pasivamente a la restricción del gobierno.",
+  "La deuda nominal es irrelevante para el precio, que queda fijado por la condición de paridad entre el dinero y los bonos públicos."],
+ a:1,
+ fb:"No ricardiano: superávits exógenos; \\(\\frac{B_{t-1}}{P_t}=E_t\\sum \\text{(superávits reales descontados)}\\). \\(P_t\\) es la variable de ajuste. Ricardiano: la política fiscal respalda cualquier \\(P\\), y el dinero ancla precios."},
+
+{tema:"Tema 12 — Complementario (Walsh cap. 4)",type:"open",
+ q:"En el <b>modelo de Cagan</b> de demanda de dinero \\(m_t-p_t=-\\alpha(E_t p_{t+1}-p_t)\\), muestra la solución fundamental y explica cómo aparecen la <b>hiperinflación racional</b> y los <b>equilibrios múltiples</b> (burbujas/sunspots).",
+ c:["Modelo de Cagan","Hiperinflación racional","Equilibrios múltiples","Restricción presupuestaria del gobierno"],
+ sol:`<ul>
+ <li><b>Forma forward:</b> \\(p_t=\\frac{1}{1+\\alpha}\\sum_{j\\ge0}\\left(\\frac{\\alpha}{1+\\alpha}\\right)^j E_t m_{t+j}\\). La <b>solución fundamental</b> liga el precio al valor presente de la oferta monetaria esperada.</li>
+ <li><b>Solución general:</b> \\(p_t=p_t^{fund}+b_t\\), con \\(b_t\\) cumpliendo \\(E_t b_{t+1}=\\frac{1+\\alpha}{\\alpha}b_t\\) — un término de <b>burbuja</b> explosivo. Si \\(b_0\\neq0\\), \\(p_t\\to\\infty\\): <b>hiperinflación racional</b> autovalidada por expectativas, aun con \\(m\\) constante.</li>
+ <li><b>Equilibrios múltiples:</b> cualquier \\(b_0\\) compatible con las CPO es un equilibrio ⇒ continuo de trayectorias (incluyendo sunspots). La condición de transversalidad / no explosividad selecciona el fundamental.</li>
+ <li><b>Vínculo fiscal:</b> si la emisión financia déficits (restricción del gobierno), \\(E_t m_{t+j}\\) crece ⇒ refuerza dinámicas hiperinflacionarias; la estabilización exige ajuste fiscal creíble.</li></ul>`},
+
+{tema:"Tema 12 — Complementario (Walsh cap. 4)",type:"open",
+ q:"Plantea el problema de <b>tributación óptima</b> à la Ramsey con señoreaje: el gobierno minimiza la distorsión total financiando un gasto dado con impuestos distorsionantes y el impuesto inflacionario. Deriva la intuición de \"igualar costos marginales de distorsión\" y discute cuándo la regla de Friedman (\\(i=0\\)) sigue siendo óptima.",
+ c:["Tributación óptima y señoreaje","Problema de Ramsey","Balance presupuestario intertemporal"],
+ sol:`<ul>
+ <li><b>Problema de Ramsey:</b> elegir tasas impositivas (incl. inflación) para financiar \\(g\\) maximizando bienestar sujeto a la <b>restricción presupuestaria intertemporal</b> del gobierno. Todos los instrumentos son distorsionantes (no hay suma fija).</li>
+ <li><b>Condición de optimalidad:</b> igualar el <em>costo marginal de fondos públicos</em> entre fuentes — el costo marginal de distorsión de recaudar un peso más vía impuesto al trabajo/consumo debe igualar el de recaudarlo vía impuesto inflacionario. El dinero se trata como un bien o insumo más a gravar (Phelps).</li>
+ <li><b>Tensión con Friedman:</b> el argumento de Phelps sugiere \\(i>0\\) (gravar saldos como cualquier bien). Pero si la función de producción/utilidad hace al dinero un <em>insumo intermedio</em> o el consumo es separable y homotético (Chari-Kehoe-Christiano / Correia-Teles), reaparece la <b>regla de Friedman</b> (\\(i=0\\)): no conviene distorsionar el "insumo dinero".</li>
+ <li><b>Conclusión:</b> la optimalidad de \\(i=0\\) depende de la estructura de preferencias/tecnología; con esas condiciones, el impuesto inflacionario es dominado por impuestos directos.</li></ul>`}
+];
+
+// ---- RENDER ----
+const examEl = document.getElementById('exam');
+let currentTema = "";
+QUESTIONS.forEach((Q,idx)=>{
+  if(Q.tema!==currentTema){
+    currentTema=Q.tema;
+    const h=document.createElement('div');h.className='tema';h.textContent=Q.tema;examEl.appendChild(h);
+  }
+  const d=document.createElement('div');d.className='q';d.id='q'+idx;
+  let html = `<div class="top"><span class="qnum">${idx+1}</span>`+
+    (Q.type==='mc'?'<span class="badge mc">Opción múltiple</span>':'<span class="badge open">Abierta / derivación</span>')+
+    `</div><div class="prompt">${Q.q}</div>`;
+  html += chips(Q.c);
+  if(Q.type==='mc'){
+    html += '<ul class="opts">'+Q.opts.map((o,i)=>
+      `<li><label data-opt="${i}"><input type="radio" name="q${idx}" value="${i}" onchange="markAnswered()"><span>${o}</span></label></li>`).join('')+'</ul>';
+    html += `<div class="btnrow"><button onclick="checkOne(${idx})">Comprobar esta</button></div>`;
+    html += `<div class="feedback" id="fb${idx}"></div>`;
+  } else {
+    html += `<details class="sol"><summary>Ver solución modelo</summary><div class="body">${Q.sol}</div></details>`;
+    html += `<div class="checkself"><button onclick="toggleSelf(${idx},true)">✔ La tenía clara</button><button onclick="toggleSelf(${idx},false)">↺ A repasar</button><span class="feedback" id="fb${idx}"></span></div>`;
+  }
+  d.innerHTML=html;examEl.appendChild(d);
+});
+
+const answered = {};
+const selfState = {};
+
+function markAnswered(){updateProgress();}
+function updateProgress(){
+  const total=QUESTIONS.length;
+  let done=0;
+  QUESTIONS.forEach((Q,i)=>{
+    if(Q.type==='mc'){ if(document.querySelector(`input[name="q${i}"]:checked`)) done++; }
+    else { if(selfState[i]!==undefined) done++; }
+  });
+  const pct=Math.round(done/total*100);
+  document.getElementById('barFill').style.width=pct+'%';
+  document.getElementById('barLabel').textContent=`${done} de ${total} respondidas (${pct}%)`;
+  let openDone=Object.keys(selfState).length;
+  document.getElementById('openCount').textContent=`${openDone} / 13 abiertas marcadas`;
+}
+function checkOne(i){
+  const Q=QUESTIONS[i];
+  const sel=document.querySelector(`input[name="q${i}"]:checked`);
+  const fb=document.getElementById('fb'+i);
+  const labels=document.querySelectorAll(`#q${i} .opts label`);
+  labels.forEach(l=>l.classList.remove('correct','wrong'));
+  if(!sel){fb.className='feedback bad show';fb.textContent='Selecciona una opción primero.';return;}
+  const v=parseInt(sel.value);
+  labels[Q.a].classList.add('correct');
+  if(v===Q.a){fb.className='feedback ok show';fb.innerHTML='✅ Correcto. '+Q.fb;}
+  else{labels[v].classList.add('wrong');fb.className='feedback bad show';fb.innerHTML='❌ No exactamente. '+Q.fb;}
+  if(window.MathJax)MathJax.typesetPromise([fb]);
+  answered[i]=v;
+}
+function toggleSelf(i,clear){
+  selfState[i]=clear;
+  const fb=document.getElementById('fb'+i);
+  fb.className='feedback '+(clear?'ok':'bad')+' show';
+  fb.textContent=clear?'Marcada como dominada.':'Marcada para repasar — revisa los conceptos de arriba.';
+  updateProgress();
+}
+function gradeAll(){
+  let score=0;
+  QUESTIONS.forEach((Q,i)=>{ if(Q.type==='mc'){ checkOne(i); if(answered[i]===Q.a)score++; }});
+  document.getElementById('mcScore').textContent=score;
+  window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'});
+}
+function resetExam(){
+  if(!confirm('¿Reiniciar todas las respuestas?'))return;
+  document.querySelectorAll('input[type=radio]').forEach(r=>r.checked=false);
+  document.querySelectorAll('.opts label').forEach(l=>l.classList.remove('correct','wrong'));
+  document.querySelectorAll('.feedback').forEach(f=>{f.className='feedback';f.textContent='';});
+  document.querySelectorAll('.sol').forEach(s=>s.removeAttribute('open'));
+  for(const k in answered)delete answered[k];
+  for(const k in selfState)delete selfState[k];
+  document.getElementById('mcScore').textContent='0';
+  updateProgress();
+}
+// chip click -> obsidian
+document.addEventListener('click',e=>{
+  const c=e.target.closest('.chip');
+  if(c){e.preventDefault();window.location.href=obs(c.dataset.note);}
+});
+updateProgress();
+</script>
+</body>
+</html>
